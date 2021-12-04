@@ -1074,14 +1074,7 @@ export function setInitialProperties(element: HTMLElement | SVGElement, props: a
             case 'children':
                 break
             case 'action':
-                throw Error("action attribute isn't implemented yet")
-                // if (value instanceof Function) {
-                //     const action = new Action(undefined, "");                   
-                //     action.signal.add(value as ()=>void);
-                //     (element as any).setModel(action)
-                // } else {
-                //     (element as any).setModel(value)
-                // }
+                (element as any).setAction(value)
                 break
             case 'model':
                 (element as any).setModel(value)

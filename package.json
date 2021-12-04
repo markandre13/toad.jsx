@@ -1,0 +1,23 @@
+{
+  "name": "toad.jsx",
+  "version": "0.0.1",
+  "description": "jsx for toad.js",
+  "author": "Mark-André Hopf <mhopf@mark13.org>",
+  "license": "AGPL-3.0",
+  "main": "lib/jsx-runtime.js",
+  "module": "lib/jsx-runtime.js",
+  "types": "lib/jsx-runtime.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markandre13/toad.jsx.git"
+  },
+  "scripts": {
+      "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "csstype": "^3.0.10"
+  }
+}

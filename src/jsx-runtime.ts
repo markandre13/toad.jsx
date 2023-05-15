@@ -1019,10 +1019,7 @@ export class Fragment extends Array<Element | Text> {
         }
     }
     replaceIn(element: Element | ShadowRoot) {
-        while (element.childNodes.length > 0) {
-            element.removeChild(element.childNodes[element.childNodes.length - 1])
-        }
-        this.appendTo(element)
+        element.replaceChildren(...this)
     }
     appendTo(element: Element | ShadowRoot) {
         for (let child of this) {

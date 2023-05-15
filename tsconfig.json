@@ -6,20 +6,8 @@
     "traceResolution": false,
     "esModuleInterop": true,
     "declaration": true,
-
-    // "lib": ["dom", "esnext"],
     "outDir": "lib",
-    "lib": [ "dom" ],
-    // "plugins": [
-    //   { "transform": "@zerollup/ts-transform-paths",
-    //     "afterDeclarations": true,
-    //     "after": true,
-    //  },
-    //   {
-    //     "transform": "@zoltu/typescript-transformer-append-js-extension/output/index.js",
-    //     "after": true,
-    //   }
-    // ],
+    "lib": [ "ESNext", "DOM" ],
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "removeComments": true,

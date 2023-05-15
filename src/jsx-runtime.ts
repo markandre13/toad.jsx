@@ -1000,11 +1000,11 @@ export class Reference<T> {
     }
 }
 
-export function ref<T>(object: T, attribute: keyof T): Reference<T> {
+export function ref<T extends Object>(object: T, attribute: keyof T): Reference<T> {
     return new Reference<T>(object, attribute)
 }
 
-export function refs<T>(object: T, ...attributes: (keyof T)[]): Reference<T>[] {
+export function refs<T extends Object>(object: T, ...attributes: (keyof T)[]): Reference<T>[] {
     return attributes.map(a => new Reference<T>(object, a))
 }
 

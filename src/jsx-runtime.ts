@@ -1083,6 +1083,9 @@ export function setInitialProperties(element: HTMLElement | SVGElement, props: a
                 for (let [skey, svalue] of Object.entries(value as string)) {
                     const regex = /[A-Z]/g
                     skey = skey.replace(regex, (upperCase) => "-" + upperCase.toLowerCase())
+                    if (typeof svalue === "number") {
+                        svalue = `${svalue}`
+                    }
                     element.style.setProperty(skey, svalue as string)
                 }
                 break

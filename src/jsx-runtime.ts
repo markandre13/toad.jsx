@@ -1,6 +1,6 @@
 /*
  *  The TOAD JavaScript/TypeScript GUI Library
- *  Copyright (C) 2018-2021 Mark-André Hopf <mhopf@mark13.org>
+ *  Copyright (C) 2018-2023 Mark-André Hopf <mhopf@mark13.org>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as published by
@@ -1107,13 +1107,21 @@ export function setInitialProperties(element: HTMLElement | SVGElement, props: a
         }
     }
     if (props.children !== undefined) {
-        for (let child of props.children) {
-            if (typeof child === "string") {
-                element.appendChild(document.createTextNode(child))
-            } else {
-                element.appendChild(child)
-            }
+        appendChildren(element, props.children)
+    }
+}
+
+function appendChildren(element: HTMLElement | SVGElement, children: Array<any>) {
+    for (const child of children) {
+        if (child instanceof Array) {
+            appendChildren(element, child)
+            continue
         }
+        if (typeof child === "string") {
+            element.appendChild(document.createTextNode(child))
+            continue
+        }
+        element.appendChild(child)
     }
 }
 

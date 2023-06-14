@@ -19,8 +19,17 @@
 import type * as CSS from "csstype"
 
 export namespace JSX {
-
-    type SVGPreserveAspectRatioAlign = "none" | "xMinYMin" | "xMidYMin" | "xMaxYMin" | "xMinYMid" | "xMidYMid" | "xMaxYMid" | "xMinYMax" | "xMidYMax" | "xMaxYMax"
+    type SVGPreserveAspectRatioAlign =
+        | "none"
+        | "xMinYMin"
+        | "xMidYMin"
+        | "xMaxYMin"
+        | "xMinYMid"
+        | "xMidYMid"
+        | "xMaxYMid"
+        | "xMinYMax"
+        | "xMidYMax"
+        | "xMaxYMax"
     type SVGPreserveAspectRatioMeetOrSlice = " meet" | " slice" | ""
     type SVGPreserveAspectRatio = `${SVGPreserveAspectRatioAlign}${SVGPreserveAspectRatioMeetOrSlice}`
 
@@ -37,269 +46,279 @@ export namespace JSX {
     }
 
     // use csstype's nice CSS definitons and comments for VSCode's Intellisense
-    export interface CSSProperties extends CSS.Properties<string | number> { }
+    export interface CSSProperties extends CSS.Properties<string | number> {}
 
     // copy'n pasted Aria definitions from DefinitelyTyped/types/react/index.d.ts
 
     // All the WAI-ARIA 1.1 attributes from https://www.w3.org/TR/wai-aria-1.1/
     interface AriaAttributes {
         /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
-        'aria-activedescendant'?: string
+        "aria-activedescendant"?: string
         /** Indicates whether assistive technologies will present all, or only parts of, the changed region based on the change notifications defined by the aria-relevant attribute. */
-        'aria-atomic'?: boolean | 'false' | 'true'
+        "aria-atomic"?: boolean | "false" | "true"
         /**
          * Indicates whether inputting text could trigger display of one or more predictions of the user's intended value for an input and specifies how predictions would be
          * presented if they are made.
          */
-        'aria-autocomplete'?: 'none' | 'inline' | 'list' | 'both'
+        "aria-autocomplete"?: "none" | "inline" | "list" | "both"
         /** Indicates an element is being modified and that assistive technologies MAY want to wait until the modifications are complete before exposing them to the user. */
-        'aria-busy'?: boolean | 'false' | 'true'
+        "aria-busy"?: boolean | "false" | "true"
         /**
          * Indicates the current "checked" state of checkboxes, radio buttons, and other widgets.
          * @see aria-pressed @see aria-selected.
          */
-        'aria-checked'?: boolean | 'false' | 'mixed' | 'true'
+        "aria-checked"?: boolean | "false" | "mixed" | "true"
         /**
          * Defines the total number of columns in a table, grid, or treegrid.
          * @see aria-colindex.
          */
-        'aria-colcount'?: number
+        "aria-colcount"?: number
         /**
          * Defines an element's column index or position with respect to the total number of columns within a table, grid, or treegrid.
          * @see aria-colcount @see aria-colspan.
          */
-        'aria-colindex'?: number
+        "aria-colindex"?: number
         /**
          * Defines the number of columns spanned by a cell or gridcell within a table, grid, or treegrid.
          * @see aria-colindex @see aria-rowspan.
          */
-        'aria-colspan'?: number
+        "aria-colspan"?: number
         /**
          * Identifies the element (or elements) whose contents or presence are controlled by the current element.
          * @see aria-owns.
          */
-        'aria-controls'?: string
+        "aria-controls"?: string
         /** Indicates the element that represents the current item within a container or set of related elements. */
-        'aria-current'?: boolean | 'false' | 'true' | 'page' | 'step' | 'location' | 'date' | 'time'
+        "aria-current"?: boolean | "false" | "true" | "page" | "step" | "location" | "date" | "time"
         /**
          * Identifies the element (or elements) that describes the object.
          * @see aria-labelledby
          */
-        'aria-describedby'?: string
+        "aria-describedby"?: string
         /**
          * Identifies the element that provides a detailed, extended description for the object.
          * @see aria-describedby.
          */
-        'aria-details'?: string
+        "aria-details"?: string
         /**
          * Indicates that the element is perceivable but disabled, so it is not editable or otherwise operable.
          * @see aria-hidden @see aria-readonly.
          */
-        'aria-disabled'?: boolean | 'false' | 'true'
+        "aria-disabled"?: boolean | "false" | "true"
         /**
          * Indicates what functions can be performed when a dragged object is released on the drop target.
          * @deprecated in ARIA 1.1
          */
-        'aria-dropeffect'?: 'none' | 'copy' | 'execute' | 'link' | 'move' | 'popup'
+        "aria-dropeffect"?: "none" | "copy" | "execute" | "link" | "move" | "popup"
         /**
          * Identifies the element that provides an error message for the object.
          * @see aria-invalid @see aria-describedby.
          */
-        'aria-errormessage'?: string
+        "aria-errormessage"?: string
         /** Indicates whether the element, or another grouping element it controls, is currently expanded or collapsed. */
-        'aria-expanded'?: boolean | 'false' | 'true'
+        "aria-expanded"?: boolean | "false" | "true"
         /**
          * Identifies the next element (or elements) in an alternate reading order of content which, at the user's discretion,
          * allows assistive technology to override the general default of reading in document source order.
          */
-        'aria-flowto'?: string
+        "aria-flowto"?: string
         /**
          * Indicates an element's "grabbed" state in a drag-and-drop operation.
          * @deprecated in ARIA 1.1
          */
-        'aria-grabbed'?: boolean | 'false' | 'true'
+        "aria-grabbed"?: boolean | "false" | "true"
         /** Indicates the availability and type of interactive popup element, such as menu or dialog, that can be triggered by an element. */
-        'aria-haspopup'?: boolean | 'false' | 'true' | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog'
+        "aria-haspopup"?: boolean | "false" | "true" | "menu" | "listbox" | "tree" | "grid" | "dialog"
         /**
          * Indicates whether the element is exposed to an accessibility API.
          * @see aria-disabled.
          */
-        'aria-hidden'?: boolean | 'false' | 'true'
+        "aria-hidden"?: boolean | "false" | "true"
         /**
          * Indicates the entered value does not conform to the format expected by the application.
          * @see aria-errormessage.
          */
-        'aria-invalid'?: boolean | 'false' | 'true' | 'grammar' | 'spelling'
+        "aria-invalid"?: boolean | "false" | "true" | "grammar" | "spelling"
         /** Indicates keyboard shortcuts that an author has implemented to activate or give focus to an element. */
-        'aria-keyshortcuts'?: string
+        "aria-keyshortcuts"?: string
         /**
          * Defines a string value that labels the current element.
          * @see aria-labelledby.
          */
-        'aria-label'?: string
+        "aria-label"?: string
         /**
          * Identifies the element (or elements) that labels the current element.
          * @see aria-describedby.
          */
-        'aria-labelledby'?: string
+        "aria-labelledby"?: string
         /** Defines the hierarchical level of an element within a structure. */
-        'aria-level'?: number
+        "aria-level"?: number
         /** Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region. */
-        'aria-live'?: 'off' | 'assertive' | 'polite'
+        "aria-live"?: "off" | "assertive" | "polite"
         /** Indicates whether an element is modal when displayed. */
-        'aria-modal'?: boolean | 'false' | 'true'
+        "aria-modal"?: boolean | "false" | "true"
         /** Indicates whether a text box accepts multiple lines of input or only a single line. */
-        'aria-multiline'?: boolean | 'false' | 'true'
+        "aria-multiline"?: boolean | "false" | "true"
         /** Indicates that the user may select more than one item from the current selectable descendants. */
-        'aria-multiselectable'?: boolean | 'false' | 'true'
+        "aria-multiselectable"?: boolean | "false" | "true"
         /** Indicates whether the element's orientation is horizontal, vertical, or unknown/ambiguous. */
-        'aria-orientation'?: 'horizontal' | 'vertical'
+        "aria-orientation"?: "horizontal" | "vertical"
         /**
          * Identifies an element (or elements) in order to define a visual, functional, or contextual parent/child relationship
          * between DOM elements where the DOM hierarchy cannot be used to represent the relationship.
          * @see aria-controls.
          */
-        'aria-owns'?: string
+        "aria-owns"?: string
         /**
          * Defines a short hint (a word or short phrase) intended to aid the user with data entry when the control has no value.
          * A hint could be a sample value or a brief description of the expected format.
          */
-        'aria-placeholder'?: string
+        "aria-placeholder"?: string
         /**
          * Defines an element's number or position in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.
          * @see aria-setsize.
          */
-        'aria-posinset'?: number
+        "aria-posinset"?: number
         /**
          * Indicates the current "pressed" state of toggle buttons.
          * @see aria-checked @see aria-selected.
          */
-        'aria-pressed'?: boolean | 'false' | 'mixed' | 'true'
+        "aria-pressed"?: boolean | "false" | "mixed" | "true"
         /**
          * Indicates that the element is not editable, but is otherwise operable.
          * @see aria-disabled.
          */
-        'aria-readonly'?: boolean | 'false' | 'true'
+        "aria-readonly"?: boolean | "false" | "true"
         /**
          * Indicates what notifications the user agent will trigger when the accessibility tree within a live region is modified.
          * @see aria-atomic.
          */
-        'aria-relevant'?: 'additions' | 'additions removals' | 'additions text' | 'all' | 'removals' | 'removals additions' | 'removals text' | 'text' | 'text additions' | 'text removals'
+        "aria-relevant"?:
+            | "additions"
+            | "additions removals"
+            | "additions text"
+            | "all"
+            | "removals"
+            | "removals additions"
+            | "removals text"
+            | "text"
+            | "text additions"
+            | "text removals"
         /** Indicates that user input is required on the element before a form may be submitted. */
-        'aria-required'?: boolean | 'false' | 'true'
+        "aria-required"?: boolean | "false" | "true"
         /** Defines a human-readable, author-localized description for the role of an element. */
-        'aria-roledescription'?: string
+        "aria-roledescription"?: string
         /**
          * Defines the total number of rows in a table, grid, or treegrid.
          * @see aria-rowindex.
          */
-        'aria-rowcount'?: number
+        "aria-rowcount"?: number
         /**
          * Defines an element's row index or position with respect to the total number of rows within a table, grid, or treegrid.
          * @see aria-rowcount @see aria-rowspan.
          */
-        'aria-rowindex'?: number
+        "aria-rowindex"?: number
         /**
          * Defines the number of rows spanned by a cell or gridcell within a table, grid, or treegrid.
          * @see aria-rowindex @see aria-colspan.
          */
-        'aria-rowspan'?: number
+        "aria-rowspan"?: number
         /**
          * Indicates the current "selected" state of various widgets.
          * @see aria-checked @see aria-pressed.
          */
-        'aria-selected'?: boolean | 'false' | 'true'
+        "aria-selected"?: boolean | "false" | "true"
         /**
          * Defines the number of items in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.
          * @see aria-posinset.
          */
-        'aria-setsize'?: number
+        "aria-setsize"?: number
         /** Indicates if items in a table or grid are sorted in ascending or descending order. */
-        'aria-sort'?: 'none' | 'ascending' | 'descending' | 'other'
+        "aria-sort"?: "none" | "ascending" | "descending" | "other"
         /** Defines the maximum allowed value for a range widget. */
-        'aria-valuemax'?: number
+        "aria-valuemax"?: number
         /** Defines the minimum allowed value for a range widget. */
-        'aria-valuemin'?: number
+        "aria-valuemin"?: number
         /**
          * Defines the current value for a range widget.
          * @see aria-valuetext.
          */
-        'aria-valuenow'?: number
+        "aria-valuenow"?: number
         /** Defines the human readable text alternative of aria-valuenow for a range widget. */
-        'aria-valuetext'?: string
+        "aria-valuetext"?: string
     }
 
     // All the WAI-ARIA 1.1 role attribute values from https://www.w3.org/TR/wai-aria-1.1/#role_definitions
     type AriaRole =
-        | 'alert'
-        | 'alertdialog'
-        | 'application'
-        | 'article'
-        | 'banner'
-        | 'button'
-        | 'cell'
-        | 'checkbox'
-        | 'columnheader'
-        | 'combobox'
-        | 'complementary'
-        | 'contentinfo'
-        | 'definition'
-        | 'dialog'
-        | 'directory'
-        | 'document'
-        | 'feed'
-        | 'figure'
-        | 'form'
-        | 'grid'
-        | 'gridcell'
-        | 'group'
-        | 'heading'
-        | 'img'
-        | 'link'
-        | 'list'
-        | 'listbox'
-        | 'listitem'
-        | 'log'
-        | 'main'
-        | 'marquee'
-        | 'math'
-        | 'menu'
-        | 'menubar'
-        | 'menuitem'
-        | 'menuitemcheckbox'
-        | 'menuitemradio'
-        | 'navigation'
-        | 'none'
-        | 'note'
-        | 'option'
-        | 'presentation'
-        | 'progressbar'
-        | 'radio'
-        | 'radiogroup'
-        | 'region'
-        | 'row'
-        | 'rowgroup'
-        | 'rowheader'
-        | 'scrollbar'
-        | 'search'
-        | 'searchbox'
-        | 'separator'
-        | 'slider'
-        | 'spinbutton'
-        | 'status'
-        | 'switch'
-        | 'tab'
-        | 'table'
-        | 'tablist'
-        | 'tabpanel'
-        | 'term'
-        | 'textbox'
-        | 'timer'
-        | 'toolbar'
-        | 'tooltip'
-        | 'tree'
-        | 'treegrid'
-        | 'treeitem'
+        | "alert"
+        | "alertdialog"
+        | "application"
+        | "article"
+        | "banner"
+        | "button"
+        | "cell"
+        | "checkbox"
+        | "columnheader"
+        | "combobox"
+        | "complementary"
+        | "contentinfo"
+        | "definition"
+        | "dialog"
+        | "directory"
+        | "document"
+        | "feed"
+        | "figure"
+        | "form"
+        | "grid"
+        | "gridcell"
+        | "group"
+        | "heading"
+        | "img"
+        | "link"
+        | "list"
+        | "listbox"
+        | "listitem"
+        | "log"
+        | "main"
+        | "marquee"
+        | "math"
+        | "menu"
+        | "menubar"
+        | "menuitem"
+        | "menuitemcheckbox"
+        | "menuitemradio"
+        | "navigation"
+        | "none"
+        | "note"
+        | "option"
+        | "presentation"
+        | "progressbar"
+        | "radio"
+        | "radiogroup"
+        | "region"
+        | "row"
+        | "rowgroup"
+        | "rowheader"
+        | "scrollbar"
+        | "search"
+        | "searchbox"
+        | "separator"
+        | "slider"
+        | "spinbutton"
+        | "status"
+        | "switch"
+        | "tab"
+        | "table"
+        | "tablist"
+        | "tabpanel"
+        | "term"
+        | "textbox"
+        | "timer"
+        | "toolbar"
+        | "tooltip"
+        | "tree"
+        | "treegrid"
+        | "treeitem"
         | (string & {})
 
     type HTMLAttributeReferrerPolicy =
@@ -323,8 +342,459 @@ export namespace JSX {
         // dataset
     }
 
+    //
+    // interface GlobalEventHandlerProps
+    // this was created by taking TypeScript's interface GlobalEventHandlers from lib.dom.d.ts
+    // and pipe through sed 's/ | null//;s/:/?:/'
+    //
+    // Copyright (c) Microsoft Corporation. All rights reserved.
+    // Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+    // this file except in compliance with the License. You may obtain a copy of the
+    // License at http://www.apache.org/licenses/LICENSE-2.0
+    //
+    // THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    // KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+    // WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+    // MERCHANTABLITY OR NON-INFRINGEMENT.
+    //
+    // See the Apache Version 2.0 License for specific language governing permissions
+    // and limitations under the License.
+    //
+    interface GlobalEventHandlerProps {
+        /**
+         * Fires when the user aborts the download.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/abort_event)
+         */
+        onabort?: (this: GlobalEventHandlers, ev: UIEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/animationcancel_event) */
+        onanimationcancel?: (this: GlobalEventHandlers, ev: AnimationEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/animationend_event) */
+        onanimationend?: (this: GlobalEventHandlers, ev: AnimationEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/animationiteration_event) */
+        onanimationiteration?: (this: GlobalEventHandlers, ev: AnimationEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/animationstart_event) */
+        onanimationstart?: (this: GlobalEventHandlers, ev: AnimationEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/auxclick_event) */
+        onauxclick?: (this: GlobalEventHandlers, ev: MouseEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLElement/beforeinput_event) */
+        onbeforeinput?: (this: GlobalEventHandlers, ev: InputEvent) => any
+        /**
+         * Fires when the object loses the input focus.
+         * @param ev The focus event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/blur_event)
+         */
+        onblur?: (this: GlobalEventHandlers, ev: FocusEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLDialogElement/cancel_event) */
+        oncancel?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * Occurs when playback is possible, but would require further buffering.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/canplay_event)
+         */
+        oncanplay?: (this: GlobalEventHandlers, ev: Event) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/canplaythrough_event) */
+        oncanplaythrough?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * Fires when the contents of the object or selection have changed.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)
+         */
+        onchange?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * Fires when the user clicks the left mouse button on the object
+         * @param ev The mouse event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/click_event)
+         */
+        onclick?: (this: GlobalEventHandlers, ev: MouseEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLDialogElement/close_event) */
+        onclose?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * Fires when the user clicks the right mouse button in the client area, opening the context menu.
+         * @param ev The mouse event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/contextmenu_event)
+         */
+        oncontextmenu?: (this: GlobalEventHandlers, ev: MouseEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/copy_event) */
+        oncopy?: (this: GlobalEventHandlers, ev: ClipboardEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLTrackElement/cuechange_event) */
+        oncuechange?: (this: GlobalEventHandlers, ev: Event) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/cut_event) */
+        oncut?: (this: GlobalEventHandlers, ev: ClipboardEvent) => any
+        /**
+         * Fires when the user double-clicks the object.
+         * @param ev The mouse event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/dblclick_event)
+         */
+        ondblclick?: (this: GlobalEventHandlers, ev: MouseEvent) => any
+        /**
+         * Fires on the source object continuously during a drag operation.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLElement/drag_event)
+         */
+        ondrag?: (this: GlobalEventHandlers, ev: DragEvent) => any
+        /**
+         * Fires on the source object when the user releases the mouse at the close of a drag operation.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLElement/dragend_event)
+         */
+        ondragend?: (this: GlobalEventHandlers, ev: DragEvent) => any
+        /**
+         * Fires on the target element when the user drags the object to a valid drop target.
+         * @param ev The drag event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLElement/dragenter_event)
+         */
+        ondragenter?: (this: GlobalEventHandlers, ev: DragEvent) => any
+        /**
+         * Fires on the target object when the user moves the mouse out of a valid drop target during a drag operation.
+         * @param ev The drag event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLElement/dragleave_event)
+         */
+        ondragleave?: (this: GlobalEventHandlers, ev: DragEvent) => any
+        /**
+         * Fires on the target element continuously while the user drags the object over a valid drop target.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLElement/dragover_event)
+         */
+        ondragover?: (this: GlobalEventHandlers, ev: DragEvent) => any
+        /**
+         * Fires on the source object when the user starts to drag a text selection or selected object.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLElement/dragstart_event)
+         */
+        ondragstart?: (this: GlobalEventHandlers, ev: DragEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLElement/drop_event) */
+        ondrop?: (this: GlobalEventHandlers, ev: DragEvent) => any
+        /**
+         * Occurs when the duration attribute is updated.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/durationchange_event)
+         */
+        ondurationchange?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * Occurs when the media element is reset to its initial state.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/emptied_event)
+         */
+        onemptied?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * Occurs when the end of playback is reached.
+         * @param ev The event
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/ended_event)
+         */
+        onended?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * Fires when an error occurs during object loading.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/error_event)
+         */
+        onerror?: OnErrorEventHandler
+        /**
+         * Fires when the object receives focus.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/focus_event)
+         */
+        onfocus?: (this: GlobalEventHandlers, ev: FocusEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLFormElement/formdata_event) */
+        onformdata?: (this: GlobalEventHandlers, ev: FormDataEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/gotpointercapture_event) */
+        ongotpointercapture?: (this: GlobalEventHandlers, ev: PointerEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLElement/input_event) */
+        oninput?: (this: GlobalEventHandlers, ev: Event) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLInputElement/invalid_event) */
+        oninvalid?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * Fires when the user presses a key.
+         * @param ev The keyboard event
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/keydown_event)
+         */
+        onkeydown?: (this: GlobalEventHandlers, ev: KeyboardEvent) => any
+        /**
+         * Fires when the user presses an alphanumeric key.
+         * @param ev The event.
+         * @deprecated
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/keypress_event)
+         */
+        onkeypress?: (this: GlobalEventHandlers, ev: KeyboardEvent) => any
+        /**
+         * Fires when the user releases a key.
+         * @param ev The keyboard event
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/keyup_event)
+         */
+        onkeyup?: (this: GlobalEventHandlers, ev: KeyboardEvent) => any
+        /**
+         * Fires immediately after the browser loads the object.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/SVGElement/load_event)
+         */
+        onload?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * Occurs when media data is loaded at the current playback position.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/loadeddata_event)
+         */
+        onloadeddata?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * Occurs when the duration and dimensions of the media have been determined.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/loadedmetadata_event)
+         */
+        onloadedmetadata?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * Occurs when Internet Explorer begins looking for media data.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/loadstart_event)
+         */
+        onloadstart?: (this: GlobalEventHandlers, ev: Event) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Document/lostpointercapture_event) */
+        onlostpointercapture?: (this: GlobalEventHandlers, ev: PointerEvent) => any
+        /**
+         * Fires when the user clicks the object with either mouse button.
+         * @param ev The mouse event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/mousedown_event)
+         */
+        onmousedown?: (this: GlobalEventHandlers, ev: MouseEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/mouseenter_event) */
+        onmouseenter?: (this: GlobalEventHandlers, ev: MouseEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/mouseleave_event) */
+        onmouseleave?: (this: GlobalEventHandlers, ev: MouseEvent) => any
+        /**
+         * Fires when the user moves the mouse over the object.
+         * @param ev The mouse event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/mousemove_event)
+         */
+        onmousemove?: (this: GlobalEventHandlers, ev: MouseEvent) => any
+        /**
+         * Fires when the user moves the mouse pointer outside the boundaries of the object.
+         * @param ev The mouse event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/mouseout_event)
+         */
+        onmouseout?: (this: GlobalEventHandlers, ev: MouseEvent) => any
+        /**
+         * Fires when the user moves the mouse pointer into the object.
+         * @param ev The mouse event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/mouseover_event)
+         */
+        onmouseover?: (this: GlobalEventHandlers, ev: MouseEvent) => any
+        /**
+         * Fires when the user releases a mouse button while the mouse is over the object.
+         * @param ev The mouse event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/mouseup_event)
+         */
+        onmouseup?: (this: GlobalEventHandlers, ev: MouseEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/paste_event) */
+        onpaste?: (this: GlobalEventHandlers, ev: ClipboardEvent) => any
+        /**
+         * Occurs when playback is paused.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/pause_event)
+         */
+        onpause?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * Occurs when the play method is requested.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/play_event)
+         */
+        onplay?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * Occurs when the audio or video has started playing.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/playing_event)
+         */
+        onplaying?: (this: GlobalEventHandlers, ev: Event) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/pointercancel_event) */
+        onpointercancel?: (this: GlobalEventHandlers, ev: PointerEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/pointerdown_event) */
+        onpointerdown?: (this: GlobalEventHandlers, ev: PointerEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/pointerenter_event) */
+        onpointerenter?: (this: GlobalEventHandlers, ev: PointerEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/pointerleave_event) */
+        onpointerleave?: (this: GlobalEventHandlers, ev: PointerEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/pointermove_event) */
+        onpointermove?: (this: GlobalEventHandlers, ev: PointerEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/pointerout_event) */
+        onpointerout?: (this: GlobalEventHandlers, ev: PointerEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/pointerover_event) */
+        onpointerover?: (this: GlobalEventHandlers, ev: PointerEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/pointerup_event) */
+        onpointerup?: (this: GlobalEventHandlers, ev: PointerEvent) => any
+        /**
+         * Occurs to indicate progress while downloading media data.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/progress_event)
+         */
+        onprogress?: (this: GlobalEventHandlers, ev: ProgressEvent) => any
+        /**
+         * Occurs when the playback rate is increased or decreased.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/ratechange_event)
+         */
+        onratechange?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * Fires when the user resets a form.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLFormElement/reset_event)
+         */
+        onreset?: (this: GlobalEventHandlers, ev: Event) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLVideoElement/resize_event) */
+        onresize?: (this: GlobalEventHandlers, ev: UIEvent) => any
+        /**
+         * Fires when the user repositions the scroll box in the scroll bar on the object.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Document/scroll_event)
+         */
+        onscroll?: (this: GlobalEventHandlers, ev: Event) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Document/securitypolicyviolation_event) */
+        onsecuritypolicyviolation?: (this: GlobalEventHandlers, ev: SecurityPolicyViolationEvent) => any
+        /**
+         * Occurs when the seek operation ends.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/seeked_event)
+         */
+        onseeked?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * Occurs when the current playback position is moved.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/seeking_event)
+         */
+        onseeking?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * Fires when the current selection changes.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLInputElement/select_event)
+         */
+        onselect?: (this: GlobalEventHandlers, ev: Event) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Document/selectionchange_event) */
+        onselectionchange?: (this: GlobalEventHandlers, ev: Event) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Node/selectstart_event) */
+        onselectstart?: (this: GlobalEventHandlers, ev: Event) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLSlotElement/slotchange_event) */
+        onslotchange?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * Occurs when the download has stopped.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/stalled_event)
+         */
+        onstalled?: (this: GlobalEventHandlers, ev: Event) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLFormElement/submit_event) */
+        onsubmit?: (this: GlobalEventHandlers, ev: SubmitEvent) => any
+        /**
+         * Occurs if the load operation has been intentionally halted.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/suspend_event)
+         */
+        onsuspend?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * Occurs to indicate the current playback position.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/timeupdate_event)
+         */
+        ontimeupdate?: (this: GlobalEventHandlers, ev: Event) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLDetailsElement/toggle_event) */
+        ontoggle?: (this: GlobalEventHandlers, ev: Event) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/touchcancel_event) */
+        ontouchcancel?: ((this: GlobalEventHandlers, ev: TouchEvent) => any) | undefined
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/touchend_event) */
+        ontouchend?: ((this: GlobalEventHandlers, ev: TouchEvent) => any) | undefined
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/touchmove_event) */
+        ontouchmove?: ((this: GlobalEventHandlers, ev: TouchEvent) => any) | undefined
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/touchstart_event) */
+        ontouchstart?: ((this: GlobalEventHandlers, ev: TouchEvent) => any) | undefined
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/transitioncancel_event) */
+        ontransitioncancel?: (this: GlobalEventHandlers, ev: TransitionEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/transitionend_event) */
+        ontransitionend?: (this: GlobalEventHandlers, ev: TransitionEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/transitionrun_event) */
+        ontransitionrun?: (this: GlobalEventHandlers, ev: TransitionEvent) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/transitionstart_event) */
+        ontransitionstart?: (this: GlobalEventHandlers, ev: TransitionEvent) => any
+        /**
+         * Occurs when the volume is changed, or playback is muted or unmuted.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/volumechange_event)
+         */
+        onvolumechange?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * Occurs when playback stops because the next frame of a video resource is not available.
+         * @param ev The event.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/HTMLMediaElement/waiting_event)
+         */
+        onwaiting?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * @deprecated This is a legacy alias of `onanimationend`.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/animationend_event)
+         */
+        onwebkitanimationend?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * @deprecated This is a legacy alias of `onanimationiteration`.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/animationiteration_event)
+         */
+        onwebkitanimationiteration?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * @deprecated This is a legacy alias of `onanimationstart`.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/animationstart_event)
+         */
+        onwebkitanimationstart?: (this: GlobalEventHandlers, ev: Event) => any
+        /**
+         * @deprecated This is a legacy alias of `ontransitionend`.
+         *
+         * [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/transitionend_event)
+         */
+        onwebkittransitionend?: (this: GlobalEventHandlers, ev: Event) => any
+        /** [MDN Reference](https?://developer.mozilla.org/docs/Web/API/Element/wheel_event) */
+        onwheel?: (this: GlobalEventHandlers, ev: WheelEvent) => any
+    }
+
     // 3.2.2 Elements in the DOM
-    export interface HTMLElementProps extends ElementProps, AriaAttributes {
+    export interface HTMLElementProps extends ElementProps, GlobalEventHandlerProps, AriaAttributes {
         // metadata attributes
         title?: string
         lang?: string
@@ -344,9 +814,9 @@ export namespace JSX {
         contentEditable?: boolean | "inherit"
         enterkeyhint?: "enter" | "done" | "go" | "next" | "previous" | "search" | "send"
         /**
-        * Hints at the type of data that might be entered by the user while editing the element or its contents
-        * @see https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-inputmode-attribute
-        */
+         * Hints at the type of data that might be entered by the user while editing the element or its contents
+         * @see https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-inputmode-attribute
+         */
         inputMode?: "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search"
         is?: string
         itemID?: string
@@ -585,7 +1055,7 @@ export namespace JSX {
         defaultChecked?: boolean
         checked?: boolean
         dirName?: string
-        disabled?: boolean// files
+        disabled?: boolean // files
         formAction?: string
         formEnctype?: string
         formMethod?: string
@@ -605,8 +1075,29 @@ export namespace JSX {
         size?: number
         src?: string
         step?: string
-        type?: "button" | "checkbox" | "image" | "radio" | "color" | "date" | "datetime" | "datetime-local" | "email" | "file"
-        | "hidden" | "month" | "number" | "password" | "range" | "research" | "search" | "submit" | "tel" | "text" | "url" | "week"
+        type?:
+            | "button"
+            | "checkbox"
+            | "image"
+            | "radio"
+            | "color"
+            | "date"
+            | "datetime"
+            | "datetime-local"
+            | "email"
+            | "file"
+            | "hidden"
+            | "month"
+            | "number"
+            | "password"
+            | "range"
+            | "research"
+            | "search"
+            | "submit"
+            | "tel"
+            | "text"
+            | "url"
+            | "week"
         defaultValue?: string
         value?: string
         // valueAsDate
@@ -781,12 +1272,12 @@ export namespace JSX {
         main: HTMLElementProps
         /**
          * The `div` element has no special meaning at all. It represents its children.
-         * 
+         *
          * It can be used with the `class`, `lang`, and `title` attributes to mark up semantics
          * common to a group of consecutive elements.
-         * 
+         *
          * It can also be used in a `dl` element, wrapping groups of `dt` and `dd` elements.
-         * 
+         *
          * **NOTE**: Authors are strongly encouraged to view the `div` element as an element of last
          * resort, for when no other element is suitable. Use of more appropriate elements
          * instead of the `div` element leads to better accessibility for readers and easier
@@ -1005,7 +1496,7 @@ export function ref<T extends Object>(object: T, attribute: keyof T): Reference<
 }
 
 export function refs<T extends Object>(object: T, ...attributes: (keyof T)[]): Reference<T>[] {
-    return attributes.map(a => new Reference<T>(object, a))
+    return attributes.map((a) => new Reference<T>(object, a))
 }
 
 export class Fragment extends Array<Element | Text> {
@@ -1029,17 +1520,17 @@ export class Fragment extends Array<Element | Text> {
 }
 
 // https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
-export function jsx(nameOrConstructor: string | { new(...args: any[]): any }, props: any, key?: string) {
+export function jsx(nameOrConstructor: string | { new (...args: any[]): any }, props: any, key?: string) {
     if (props !== undefined && props.children !== undefined) {
         props.children = [props.children]
     }
     return jsxs(nameOrConstructor, props)
 }
 
-export function jsxs(nameOrConstructor: string | { new(...args: any[]): any }, props: any, key?: string) {
+export function jsxs(nameOrConstructor: string | { new (...args: any[]): any }, props: any, key?: string) {
     let namespace
 
-    if (typeof nameOrConstructor !== 'string') {
+    if (typeof nameOrConstructor !== "string") {
         return new nameOrConstructor(props)
     }
 
@@ -1063,23 +1554,22 @@ export function jsxs(nameOrConstructor: string | { new(...args: any[]): any }, p
 }
 
 export function setInitialProperties(element: HTMLElement | SVGElement, props: any, namespace?: string) {
-    if (props === null || props === undefined)
-        return
+    if (props === null || props === undefined) return
 
     for (let [key, value] of Object.entries(props)) {
         switch (key) {
-            case 'children':
+            case "children":
                 break
-            case 'action':
-                (element as any).setAction(value)
+            case "action":
+                ;(element as any).setAction(value)
                 break
-            case 'model':
-                (element as any).setModel(value)
+            case "model":
+                ;(element as any).setModel(value)
                 break
-            case 'class':
+            case "class":
                 element.classList.add(value as string) // FIXME: value is whitespace separated list
                 break
-            case 'style':
+            case "style":
                 for (let [skey, svalue] of Object.entries(value as string)) {
                     const regex = /[A-Z]/g
                     skey = skey.replace(regex, (upperCase) => "-" + upperCase.toLowerCase())
@@ -1089,14 +1579,14 @@ export function setInitialProperties(element: HTMLElement | SVGElement, props: a
                     element.style.setProperty(skey, svalue as string)
                 }
                 break
-            case 'set':
+            case "set":
                 Object.defineProperty(props.set!.object, props.set!.attribute, { value: element })
                 break
             default:
                 if (key.substring(0, 2) === "on") {
-                    element.addEventListener(key.substr(2), value as () => void)
+                    element.addEventListener(key.substring(2), value as () => void)
                 } else {
-                    if (typeof value !== "object") {
+                    if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") {
                         if (namespace === "http://www.w3.org/2000/svg") {
                             const regex = /[A-Z]/g
                             key = key.replace(regex, (upperCase) => "-" + upperCase.toLowerCase())
@@ -1132,13 +1622,13 @@ function appendChildren(element: HTMLElement | SVGElement, children: Array<any>)
 // export function createElement(name: string | FunctionConstructor, props: JSX.HTMLElementProps, ...children: any): Element | Fragment {
 // }
 // backward compability
-export function createElement(nameOrConstructor: string | { new(...args: any[]): any }, props: any, ...children: any) {
+export function createElement(nameOrConstructor: string | { new (...args: any[]): any }, props: any, ...children: any) {
     // console.log(`createElement(${nameOrConstructor}, ${JSON.stringify(props)}, ${children}`)
 
     // props: remove 'key', add 'children'
     let key
     if (props !== null) {
-        if ('key' in props) {
+        if ("key" in props) {
             key = props.key
             delete props.key
         }
@@ -1146,8 +1636,7 @@ export function createElement(nameOrConstructor: string | { new(...args: any[]):
             props.children = children
         }
     } else {
-        if (children !== undefined)
-            props = { children }
+        if (children !== undefined) props = { children }
     }
     return jsxs(nameOrConstructor, props, key)
 }

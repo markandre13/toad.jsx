@@ -10,7 +10,7 @@
     "lib": [ "ESNext", "DOM" ],
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "removeComments": true,
+    "removeComments": false,
     "experimentalDecorators": true,
     "noImplicitOverride": true,
     "strict": true,

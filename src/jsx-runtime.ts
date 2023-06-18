@@ -1024,8 +1024,8 @@ export namespace JSX {
     }
 
     interface HTMLTableCellElementProps extends HTMLElementProps {
-        colSpan?: number
-        rowSpan?: number
+        colspan?: number
+        rowspan?: number
         headers?: string
         scope?: string
         abbr?: string

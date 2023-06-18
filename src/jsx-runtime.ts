@@ -934,7 +934,7 @@ export namespace JSX {
     interface HTMLImageElementProps extends HTMLElementProps {
         alt?: string
         src?: string
-        secset?: string
+        srcset?: string
         sizes?: string
         crossOrigin?: "anonymous" | "use-credentials" | ""
         useMap?: string

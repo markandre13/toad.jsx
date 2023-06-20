@@ -1241,9 +1241,10 @@ export namespace JSX {
         /**
          * The html element represents the root of an HTML document.
          *
-         * Authors are encouraged to specify a lang attribute on the root html element, giving the document's language.
-         * This aids speech synthesis tools to determine what pronunciations to use, translation tools to determine what
-         * rules to use, and so forth.
+         * Authors are encouraged to specify a lang attribute on the root
+         * html element, giving the document's language.  This aids speech
+         * synthesis tools to determine what pronunciations to use,
+         * translation tools to determine what rules to use, and so forth.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/semantics.html#the-html-element}
          */
@@ -1259,10 +1260,12 @@ export namespace JSX {
         head: HTMLElementProps
 
         /**
-         * The title element represents the document's title or name. Authors should use titles that identify their documents
-         * even when they are used out of context, for example in a user's history or bookmarks, or in search results. The
-         *  document's title is often different from its first heading, since the first heading does not have to stand alone
-         * when taken out of context.
+         * The title element represents the document's title or name. 
+         * Authors should use titles that identify their documents even when
+         * they are used out of context, for example in a user's history or
+         * bookmarks, or in search results.  The document's title is often
+         * different from its first heading, since the first heading does
+         * not have to stand alone when taken out of context.
          *
          * There must be no more than one title element per document.
          * 
@@ -1271,9 +1274,10 @@ export namespace JSX {
         title: HTMLElementProps
 
         /**
-         * The base element allows authors to specify the document base URL for the purposes of parsing URLs, and the name of
-         * the default navigable for the purposes of following hyperlinks. The element does not represent any content beyond
-         * this information.
+         * The base element allows authors to specify the document base URL
+         * for the purposes of parsing URLs, and the name of the default
+         * navigable for the purposes of following hyperlinks.  The element
+         * does not represent any content beyond this information.
          *
          * There must be no more than one base element per document.
          *
@@ -1282,42 +1286,56 @@ export namespace JSX {
         base: HTMLBaseElementProps
 
         /**
-         * The link element allows authors to link their document to other resources.
+         * The link element allows authors to link their document to other
+         * resources.
          *
-         * The address of the link(s) is given by the href attribute. If the href attribute is present, then its value must be
-         *  a valid non-empty URL potentially surrounded by spaces. One or both of the href or imagesrcset attributes must be present.
+         * The address of the link(s) is given by the href attribute.  If
+         *  the href attribute is present, then its value must be a valid
+         *  non-empty URL potentially surrounded by spaces.  One or both of
+         *  the href or imagesrcset attributes must be present.
          *
-         * If both the href and imagesrcset attributes are absent, then the element does not define a link.
+         * If both the href and imagesrcset attributes are absent, then the
+         * element does not define a link.
          *
          * @see {@link https://html.spec.whatwg.org/multipage/semantics.html#the-link-element}
          */
         link: HTMLLinkElementProps
 
         /**
-         * The meta element represents various kinds of metadata that cannot be expressed using the title, base, link, style, and
-         * script elements.
+         * The meta element represents various kinds of metadata that cannot
+         * be expressed using the title, base, link, style, and script
+         * elements.
          *
-         * The meta element can represent document-level metadata with the name attribute, pragma directives with the http-equiv
-         * attribute, and the file's character encoding declaration when an HTML document is serialized to string form (e.g. for
-         * transmission over the network or for disk storage) with the charset attribute.
+         * The meta element can represent document-level metadata with the
+         * name attribute, pragma directives with the http-equiv attribute,
+         * and the file's character encoding declaration when an HTML
+         * document is serialized to string form (e.g.  for transmission
+         * over the network or for disk storage) with the charset attribute.
          *
-         * Exactly one of the name, http-equiv, charset, and itemprop attributes must be specified.
+         * Exactly one of the name, http-equiv, charset, and itemprop
+         * attributes must be specified.
          *
-         * If either name, http-equiv, or itemprop is specified, then the content attribute must also be specified. Otherwise,
-         * it must be omitted.
+         * If either name, http-equiv, or itemprop is specified, then the
+         * content attribute must also be specified.  Otherwise, it must be
+         * omitted.
          *
-         * The charset attribute specifies the character encoding used by the document. This is a character encoding declaration. 
-         * If the attribute is present, its value must be an ASCII case-insensitive match for the string "utf-8".
+         * The charset attribute specifies the character encoding used by
+         * the document.  This is a character encoding declaration.  If the
+         * attribute is present, its value must be an ASCII case-insensitive
+         * match for the string "utf-8".
          *
-         * There must not be more than one meta element with a charset attribute per document.
+         * There must not be more than one meta element with a charset
+         * attribute per document.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/semantics.html#the-meta-element}
          */
         meta: HTMLMetaElementProps
 
         /**
-         * The style element allows authors to embed CSS style sheets in their documents. The style element is one of several
-         * inputs to the styling processing model. The element does not represent content for the user.
+         * The style element allows authors to embed CSS style sheets in
+         * their documents.  The style element is one of several inputs to
+         * the styling processing model.  The element does not represent
+         * content for the user.
          * 
          * With JSX, use this notation: &lt;style&gt;{&#96;...&#96;}&lt;/style&gt;
          * 
@@ -1330,55 +1348,71 @@ export namespace JSX {
         /**
          * The body element represents the contents of the document.
          *
-         * In conforming documents, there is only one body element. The document.body IDL attribute provides scripts with easy
-         * access to a document's body element.
+         * In conforming documents, there is only one body element.  The
+         * document.body IDL attribute provides scripts with easy access to
+         * a document's body element.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/sections.html#the-body-element}
          */
         body: HTMLElementProps
 
         /**
-         * The article element represents a complete, or self-contained, composition in a document, page, application, or site
-         *  and that is, in principle, independently distributable or reusable, e.g. in syndication. This could be a forum post,
-         *  a magazine or newspaper article, a blog entry, a user-submitted comment, an interactive widget or gadget, or any
-         *  other independent item of content.
+         * The article element represents a complete, or self-contained,
+         * composition in a document, page, application, or site and that
+         * is, in principle, independently distributable or reusable, e.g. 
+         * in syndication.  This could be a forum post, a magazine or
+         * newspaper article, a blog entry, a user-submitted comment, an
+         * interactive widget or gadget, or any other independent item of
+         * content.
          *
-         * When article elements are nested, the inner article elements represent articles that are in principle related to the 
-         * contents of the outer article. For instance, a blog entry on a site that accepts user-submitted comments could represent
-         *  the comments as article elements nested within the article element for the blog entry.
+         * When article elements are nested, the inner article elements
+         * represent articles that are in principle related to the contents
+         * of the outer article.  For instance, a blog entry on a site that
+         * accepts user-submitted comments could represent the comments as
+         * article elements nested within the article element for the blog
+         * entry.
          *
-         * Author information associated with an article element (q.v. the address element) does not apply to nested article elements.
+         * Author information associated with an article element (q.v.  the
+         * address element) does not apply to nested article elements.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/sections.html#the-article-element}
          */
         article: HTMLElementProps
 
         /**
-         * The section element represents a generic section of a document or application. A section, in this context, is a thematic
-         * grouping of content, typically with a heading.
+         * The section element represents a generic section of a document or
+         * application.  A section, in this context, is a thematic grouping
+         * of content, typically with a heading.
          * 
-         * EXAMPLE: Examples of sections would be chapters, the various tabbed pages in a tabbed dialog box, or the numbered sections
-         * of a thesis. A web site's home page could be split into sections for an introduction, news items, and contact information.
+         * **EXAMPLE** Examples of sections would be chapters, the various
+         * tabbed pages in a tabbed dialog box, or the numbered sections of
+         * a thesis.  A web site's home page could be split into sections
+         * for an introduction, news items, and contact information.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/sections.html#the-section-element}
          */
         section: HTMLElementProps
 
         /**
-         * The nav element represents a section of a page that links to other pages or to parts within the page: a section with navigation 
-         * links.
+         * The nav element represents a section of a page that links to
+         * other pages or to parts within the page: a section with
+         * navigation links.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/sections.html#the-nav-element}
          */
         nav: HTMLElementProps
 
         /**
-         * The aside element represents a section of a page that consists of content that is tangentially related to the content around the
-         * aside element, and which could be considered separate from that content. Such sections are often represented as sidebars in
-         *  printed typography.
+         * The aside element represents a section of a page that consists of
+         * content that is tangentially related to the content around the
+         * aside element, and which could be considered separate from that
+         * content.  Such sections are often represented as sidebars in
+         * printed typography.
          *
-         * The element can be used for typographical effects like pull quotes or sidebars, for advertising, for groups of nav elements, and 
-         * for other content that is considered separate from the main content of the page.
+         * The element can be used for typographical effects like pull
+         * quotes or sidebars, for advertising, for groups of nav elements,
+         * and for other content that is considered separate from the main
+         * content of the page.
          *
          * @see {@link https://html.spec.whatwg.org/multipage/sections.html#the-aside-element}
          */
@@ -1387,10 +1421,13 @@ export namespace JSX {
         /**
          * These elements represent headings for their sections.
          *
-         * The semantics and meaning of these elements are defined in the section on headings and outlines.
+         * The semantics and meaning of these elements are defined in the
+         * section on headings and outlines.
          *
-         * These elements have a heading level given by the number in their name. The heading level corresponds to the levels of nested sections.
-         * The h1 element is for a top-level section, h2 for a subsection, h3 for a sub-subsection, and so on.
+         * These elements have a heading level given by the number in their
+         * name.  The heading level corresponds to the levels of nested
+         * sections.  The h1 element is for a top-level section, h2 for a
+         * subsection, h3 for a sub-subsection, and so on.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements}
          */
@@ -1399,10 +1436,13 @@ export namespace JSX {
         /**
          * These elements represent headings for their sections.
          *
-         * The semantics and meaning of these elements are defined in the section on headings and outlines.
+         * The semantics and meaning of these elements are defined in the
+         * section on headings and outlines.
          *
-         * These elements have a heading level given by the number in their name. The heading level corresponds to the levels of nested sections.
-         * The h1 element is for a top-level section, h2 for a subsection, h3 for a sub-subsection, and so on.
+         * These elements have a heading level given by the number in their
+         * name.  The heading level corresponds to the levels of nested
+         * sections.  The h1 element is for a top-level section, h2 for a
+         * subsection, h3 for a sub-subsection, and so on.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements}
          */
@@ -1411,10 +1451,13 @@ export namespace JSX {
         /**
          * These elements represent headings for their sections.
          *
-         * The semantics and meaning of these elements are defined in the section on headings and outlines.
+         * The semantics and meaning of these elements are defined in the
+         * section on headings and outlines.
          *
-         * These elements have a heading level given by the number in their name. The heading level corresponds to the levels of nested sections.
-         * The h1 element is for a top-level section, h2 for a subsection, h3 for a sub-subsection, and so on.
+         * These elements have a heading level given by the number in their
+         * name.  The heading level corresponds to the levels of nested
+         * sections.  The h1 element is for a top-level section, h2 for a
+         * subsection, h3 for a sub-subsection, and so on.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements}
          */
@@ -1425,8 +1468,10 @@ export namespace JSX {
          *
          * The semantics and meaning of these elements are defined in the section on headings and outlines.
          *
-         * These elements have a heading level given by the number in their name. The heading level corresponds to the levels of nested sections.
-         * The h1 element is for a top-level section, h2 for a subsection, h3 for a sub-subsection, and so on.
+         * These elements have a heading level given by the number in their
+         * name.  The heading level corresponds to the levels of nested
+         * sections.  The h1 element is for a top-level section, h2 for a
+         * subsection, h3 for a sub-subsection, and so on.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements}
          */
@@ -1435,10 +1480,13 @@ export namespace JSX {
         /**
          * These elements represent headings for their sections.
          *
-         * The semantics and meaning of these elements are defined in the section on headings and outlines.
+         * The semantics and meaning of these elements are defined in the
+         * section on headings and outlines.
          *
-         * These elements have a heading level given by the number in their name. The heading level corresponds to the levels of nested sections.
-         * The h1 element is for a top-level section, h2 for a subsection, h3 for a sub-subsection, and so on.
+         * These elements have a heading level given by the number in their
+         * name.  The heading level corresponds to the levels of nested
+         * sections.  The h1 element is for a top-level section, h2 for a
+         * subsection, h3 for a sub-subsection, and so on.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements}
          */
@@ -1449,34 +1497,42 @@ export namespace JSX {
          *
          * The semantics and meaning of these elements are defined in the section on headings and outlines.
          *
-         * These elements have a heading level given by the number in their name. The heading level corresponds to the levels of nested sections.
-         * The h1 element is for a top-level section, h2 for a subsection, h3 for a sub-subsection, and so on.
+         * These elements have a heading level given by the number in their
+         * name.  The heading level corresponds to the levels of nested
+         * sections.  The h1 element is for a top-level section, h2 for a
+         * subsection, h3 for a sub-subsection, and so on.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements}
          */
         h6: HTMLElementProps
 
         /**
-         * The hgroup element represents a heading and related content. The element may be used to group an h1–h6 element with one or more p elements
-         * containing content representing a subheading, alternative title, or tagline.
+         * The hgroup element represents a heading and related content.  The
+         * element may be used to group an h1–h6 element with one or more p
+         * elements containing content representing a subheading,
+         * alternative title, or tagline.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/sections.html#the-hgroup-element}
          */
         hgroup: HTMLElementProps
 
         /**
-         * The header element represents a group of introductory or navigational aids.
+         * The header element represents a group of introductory or
+         * navigational aids.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/sections.html#the-header-element}
          */
         header: HTMLElementProps
 
         /**
-         * The footer element represents a footer for its nearest ancestor sectioning content element, or for the body element if there 
-         * is no such ancestor. A footer typically contains information about its section such as who wrote it, links to related documents, 
+         * The footer element represents a footer for its nearest ancestor
+         * sectioning content element, or for the body element if there is
+         * no such ancestor.  A footer typically contains information about
+         * its section such as who wrote it, links to related documents,
          * copyright data, and the like.
          *
-         * When the footer element contains entire sections, they represent appendices, indices, long colophons, verbose license agreements, 
+         * When the footer element contains entire sections, they represent
+         * appendices, indices, long colophons, verbose license agreements,
          * and other such content.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/sections.html#the-footer-element}
@@ -1484,13 +1540,18 @@ export namespace JSX {
         footer: HTMLElementProps
 
         /**
-         * The address element represents the contact information for its nearest article or body element ancestor. If that is the body element,
-         * then the contact information applies to the document as a whole.
+         * The address element represents the contact information for its
+         * nearest article or body element ancestor.  If that is the body
+         * element, then the contact information applies to the document as
+         * a whole.
          * 
-         * The address element must not be used to represent arbitrary addresses (e.g. postal addresses), unless those addresses are in fact the
-         * relevant contact information. (The p element is the appropriate element for marking up postal addresses in general.)
+         * The address element must not be used to represent arbitrary
+         * addresses (e.g.  postal addresses), unless those addresses are in
+         * fact the relevant contact information.  (The p element is the
+         * appropriate element for marking up postal addresses in general.)
          *
-         * The address element must not contain information other than contact information.
+         * The address element must not contain information other than
+         * contact information.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/sections.html#the-address-element}
          */
@@ -1501,31 +1562,41 @@ export namespace JSX {
         /**
          * The p element represents a paragraph.
          * 
-         * **NOTE**: While paragraphs are usually represented in visual media by blocks of text that are physically separated from adjacent blocks
-         * through blank lines, a style sheet or user agent would be equally justified in presenting paragraph breaks in a different manner, for 
-         * instance using inline pilcrows (¶).
+         * **NOTE** While paragraphs are usually represented in visual media
+         * by blocks of text that are physically separated from adjacent
+         * blocks through blank lines, a style sheet or user agent would be
+         * equally justified in presenting paragraph breaks in a different
+         * manner, for instance using inline pilcrows (¶).
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/grouping-content.html#the-p-element}
          */
         p: HTMLElementProps
 
         /**
-         * The hr element represents a paragraph-level thematic break, e.g., a scene change in a story, or a transition to another topic within a 
-         * section of a reference book; alternatively, it represents a separator between a set of options of a select element.
+         * The hr element represents a paragraph-level thematic break, e.g.,
+         * a scene change in a story, or a transition to another topic
+         * within a section of a reference book; alternatively, it
+         * represents a separator between a set of options of a select
+         * element.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/grouping-content.html#the-hr-element}
          */
         hr: HTMLElementProps
 
         /**
-         * The pre element represents a block of preformatted text, in which structure is represented by typographic conventions rather than by elements.
+         * The pre element represents a block of preformatted text, in which
+         * structure is represented by typographic conventions rather than
+         * by elements.
          * 
-         * **NOTE** In the HTML syntax, a leading newline character immediately following the pre element start tag is stripped.
+         * **NOTE** In the HTML syntax, a leading newline character
+         * **immediately following the pre element start tag is stripped.
          * 
          * Some examples of cases where the pre element could be used:
          * 
-         * * Including an email, with paragraphs indicated by blank lines, lists indicated by lines prefixed with a bullet, and so on.
-         * * Including fragments of computer code, with structure indicated according to the conventions of that language.
+         * * Including an email, with paragraphs indicated by blank lines,
+         *   lists indicated by lines prefixed with a bullet, and so on.
+         * * Including fragments of computer code, with structure indicated
+         *   according to the conventions of that language.
          * * Displaying ASCII art.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/grouping-content.html#the-pre-element}
@@ -1535,37 +1606,48 @@ export namespace JSX {
         /**
          * The blockquote element represents a section that is quoted from another source.
          *
-         * Content inside a blockquote must be quoted from another source, whose address, if it has one, may be cited in the cite attribute.
+         * Content inside a blockquote must be quoted from another source,
+         * whose address, if it has one, may be cited in the cite attribute.
          *
-         * If the cite attribute is present, it must be a valid URL potentially surrounded by spaces. To obtain the corresponding citation link,
-         * the value of the attribute must be parsed relative to the element's node document. User agents may allow users to follow such citation
-         * links, but they are primarily intended for private use (e.g., by server-side scripts collecting statistics about a site's use of
-         * quotations), not for readers.
+         * If the cite attribute is present, it must be a valid URL
+         * potentially surrounded by spaces.  To obtain the corresponding
+         * citation link, the value of the attribute must be parsed relative
+         * to the element's node document.  User agents may allow users to
+         * follow such citation links, but they are primarily intended for
+         * private use (e.g., by server-side scripts collecting statistics
+         * about a site's use of quotations), not for readers.
          * 
-         * The content of a blockquote may be abbreviated or may have context added in the conventional manner for the text's language.
+         * The content of a blockquote may be abbreviated or may have
+         * context added in the conventional manner for the text's language.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/grouping-content.html#the-blockquote-element}
          */
         blockquote: HTMLQuoteElementProps
 
         /**
-         * The ol element represents a list of items, where the items have been intentionally ordered, such that changing the order would
+         * The ol element represents a list of items, where the items have
+         * been intentionally ordered, such that changing the order would
          * change the meaning of the document.
          * 
-         * The items of the list are the li element child nodes of the ol element, in tree order.
+         * The items of the list are the li element child nodes of the ol
+         * element, in tree order.
          * 
-         * The reversed attribute is a boolean attribute. If present, it indicates that the list is a descending list (..., 3, 2, 1). If
-         * the attribute is omitted, the list is an ascending list (1, 2, 3, ...).
+         * The reversed attribute is a boolean attribute.  If present, it
+         * indicates that the list is a descending list (..., 3, 2, 1).  If
+         * the attribute is omitted, the list is an ascending list (1, 2, 3,
+         * ...).
          * 
-         * The start attribute, if present, must be a valid integer. It is used to determine the starting value of the list.
+         * The start attribute, if present, must be a valid integer.  It is
+         * used to determine the starting value of the list.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/grouping-content.html#the-ol-element}
          */
         ol: HTMLOListElementProps
 
         /**
-         * The ul element represents a list of items, where the order of the items is not important — that is, where changing the order 
-         * would not materially change the meaning of the document.
+         * The ul element represents a list of items, where the order of the
+         * items is not important — that is, where changing the order would
+         * not materially change the meaning of the document.
          * 
          * The items of the list are the li element child nodes of the ul element.
          * 
@@ -1574,114 +1656,149 @@ export namespace JSX {
         ul: HTMLElementProps
 
         /**
-         * The menu element represents a toolbar consisting of its contents, in the form of an unordered list of items (represented by li 
-         * elements), each of which represents a command that the user can perform or activate.
+         * The menu element represents a toolbar consisting of its contents,
+         * in the form of an unordered list of items (represented by li
+         * elements), each of which represents a command that the user can
+         * perform or activate.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/grouping-content.html#the-menu-element}
          */
         menu: HTMLElementProps
 
         /**
-         * The li element represents a list item. If its parent element is an ol, ul, or menu element, then the element is an item of 
-         * the parent element's list, as defined for those elements. Otherwise, the list item has no defined list-related relationship 
-         * to any other li element.
+         * The li element represents a list item.  If its parent element is
+         * an ol, ul, or menu element, then the element is an item of the
+         * parent element's list, as defined for those elements.  Otherwise,
+         * the list item has no defined list-related relationship to any
+         * other li element.
          *
-         * The value attribute, if present, must be a valid integer. It is used to determine the ordinal value of the list item, when 
-         * the li's list owner is an ol element.
+         * The value attribute, if present, must be a valid integer.  It is
+         * used to determine the ordinal value of the list item, when the
+         * li's list owner is an ol element.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/grouping-content.html#the-li-element}
          */
         li: HTMLLIElementProps
 
         /**
-         * The dl element represents an association list consisting of zero or more name-value groups (a description list). A name-value
-         * group consists of one or more names (dt elements, possibly as children of a div element child) followed by one or more values
-         * (dd elements, possibly as children of a div element child), ignoring any nodes other than dt and dd element children, and dt
-         * and dd elements that are children of div element children. Within a single dl element, there should not be more than one dt
+         * The dl element represents an association list consisting of zero
+         * or more name-value groups (a description list).  A name-value
+         * group consists of one or more names (dt elements, possibly as
+         * children of a div element child) followed by one or more values
+         * (dd elements, possibly as children of a div element child),
+         * ignoring any nodes other than dt and dd element children, and dt
+         * and dd elements that are children of div element children. 
+         * Within a single dl element, there should not be more than one dt
          * element for each name.
          *
-         * Name-value groups may be terms and definitions, metadata topics and values, questions and answers, or any other groups of
+         * Name-value groups may be terms and definitions, metadata topics
+         * and values, questions and answers, or any other groups of
          * name-value data.
          *
-         * The values within a group are alternatives; multiple paragraphs forming part of the same value must all be given within the
-         * same dd element.
+         * The values within a group are alternatives; multiple paragraphs
+         * forming part of the same value must all be given within the same
+         * dd element.
          *
-         * The order of the list of groups, and of the names and values within each group, may be significant.
+         * The order of the list of groups, and of the names and values
+         * within each group, may be significant.
          *
-         * In order to annotate groups with microdata attributes, or other global attributes that apply to whole groups, or just for styling
-         * purposes, each group in a dl element can be wrapped in a div element. This does not change the semantics of the dl element.
+         * In order to annotate groups with microdata attributes, or other
+         * global attributes that apply to whole groups, or just for styling
+         * purposes, each group in a dl element can be wrapped in a div
+         * element.  This does not change the semantics of the dl element.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/grouping-content.html#the-dl-element}
          */
         dl: HTMLElementProps
 
         /**
-         * The dt element represents the term, or name, part of a term-description group in a description list (dl element).
+         * The dt element represents the term, or name, part of a
+         * term-description group in a description list (dl element).
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/grouping-content.html#the-dt-element}
          */
         dt: HTMLElementProps
+
         /**
-         * The dd element represents the description, definition, or value, part of a term-description group in a description list (dl element).
+         * The dd element represents the description, definition, or value,
+         * part of a term-description group in a description list (dl
+         * element).
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/grouping-content.html#the-dd-element}
          */
         dd: HTMLElementProps
 
         /**
-         * The figure element represents some flow content, optionally with a caption, that is self-contained (like a complete sentence) and is 
-         * typically referenced as a single unit from the main flow of the document.
+         * The figure element represents some flow content, optionally with
+         * a caption, that is self-contained (like a complete sentence) and
+         * is typically referenced as a single unit from the main flow of
+         * the document.
          * 
-         * **NOTE** "Self-contained" in this context does not necessarily mean independent. For example, each sentence in a paragraph is 
-         * self-contained; an image that is part of a sentence would be inappropriate for figure, but an entire sentence made of images would 
-         * be fitting.
+         * **NOTE** "Self-contained" in this context does not necessarily
+         * mean independent.  For example, each sentence in a paragraph is
+         * self-contained; an image that is part of a sentence would be
+         * inappropriate for figure, but an entire sentence made of images
+         * would be fitting.
          * 
-         * The element can thus be used to annotate illustrations, diagrams, photos, code listings, etc.
+         * The element can thus be used to annotate illustrations, diagrams,
+         * photos, code listings, etc.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/grouping-content.html#the-figure-element}
          */
         figure: HTMLElementProps
 
         /**
-         * The figcaption element represents a caption or legend for the rest of the contents of the figcaption element's parent figure element, if any.
+         * The figcaption element represents a caption or legend for the
+         * rest of the contents of the figcaption element's parent figure
+         * element, if any.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/grouping-content.html#the-figcaption-element}
          */
         figcaption: HTMLElementProps
 
         /**
-         * The main element represents the dominant contents of the document.
+         * The main element represents the dominant contents of the
+         * document.
          * 
-         * A document must not have more than one main element that does not have the hidden attribute specified.
+         * A document must not have more than one main element that does not
+         * have the hidden attribute specified.
          * 
-         * A hierarchically correct main element is one whose ancestor elements are limited to html, body, div, form without an accessible name, 
-         * and autonomous custom elements. Each main element must be a hierarchically correct main element.
+         * A hierarchically correct main element is one whose ancestor
+         * elements are limited to html, body, div, form without an
+         * accessible name, and autonomous custom elements.  Each main
+         * element must be a hierarchically correct main element.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/grouping-content.html#the-main-element}
          */
         main: HTMLElementProps
 
         /**
-         * The search element represents a part of a document or application that contains a set of form controls or other content related to
-         * performing a search or filtering operation. This could be a search of the web site or application; a way of searching or filtering
-         * search results on the current web page; or a global or Internet-wide search function.
+         * The search element represents a part of a document or application
+         * that contains a set of form controls or other content related to
+         * performing a search or filtering operation.  This could be a
+         * search of the web site or application; a way of searching or
+         * filtering search results on the current web page; or a global or
+         * Internet-wide search function.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/grouping-content.html#the-search-element}
          */
         search: HTMLElementProps
 
         /**
-         * The `div` element has no special meaning at all. It represents its children.
+         * The `div` element has no special meaning at all.  It represents
+         * its children.
          *
-         * It can be used with the `class`, `lang`, and `title` attributes to mark up semantics
-         * common to a group of consecutive elements.
+         * It can be used with the `class`, `lang`, and `title` attributes
+         * to mark up semantics common to a group of consecutive elements.
          *
-         * It can also be used in a `dl` element, wrapping groups of `dt` and `dd` elements.
+         * It can also be used in a `dl` element, wrapping groups of `dt`
+         * and `dd` elements.
          *
-         * **NOTE**: Authors are strongly encouraged to view the `div` element as an element of last
-         * resort, for when no other element is suitable. Use of more appropriate elements
-         * instead of the `div` element leads to better accessibility for readers and easier
-         * maintainability for authors.
+         * **NOTE** Authors are strongly encouraged to view the `div`
+         * element as an element of last resort, for when no other element
+         * is suitable.  Use of more appropriate elements instead of the
+         * `div` element leads to better accessibility for readers and
+         * easier maintainability for authors.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/grouping-content.html#the-div-element}
          */
@@ -1690,14 +1807,20 @@ export namespace JSX {
         // 4.5 Text-level semantics
 
         /**
-         * If the a element has an href attribute, then it represents a hyperlink (a hypertext anchor) labeled by its contents.
+         * If the a element has an href attribute, then it represents a
+         * hyperlink (a hypertext anchor) labeled by its contents.
          * 
-         * If the a element has no href attribute, then the element represents a placeholder for where a link might otherwise have been placed,
-         * if it had been relevant, consisting of just the element's contents.
+         * If the a element has no href attribute, then the element
+         * represents a placeholder for where a link might otherwise have
+         * been placed, if it had been relevant, consisting of just the
+         * element's contents.
          * 
-         * The target, download, ping, rel, hreflang, type, and referrerpolicy attributes must be omitted if the href attribute is not present.
+         * The target, download, ping, rel, hreflang, type, and
+         * referrerpolicy attributes must be omitted if the href attribute
+         * is not present.
          * 
-         * If the itemprop attribute is specified on an a element, then the href attribute must also be specified.
+         * If the itemprop attribute is specified on an a element, then the
+         * href attribute must also be specified.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element}
          */
@@ -1706,33 +1829,45 @@ export namespace JSX {
         /**
          * The em element represents stress emphasis of its contents.
          * 
-         * The level of stress that a particular piece of content has is given by its number of ancestor em elements.
+         * The level of stress that a particular piece of content has is
+         * given by its number of ancestor em elements.
          * 
-         * The placement of stress emphasis changes the meaning of the sentence. The element thus forms an integral part of the content. 
-         * The precise way in which stress is used in this way depends on the language.
+         * The placement of stress emphasis changes the meaning of the
+         * sentence.  The element thus forms an integral part of the
+         * content.  The precise way in which stress is used in this way
+         * depends on the language.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-em-element}
          */
         em: HTMLElementProps
 
         /**
-         * The strong element represents strong importance, seriousness, or urgency for its contents.
+         * The strong element represents strong importance, seriousness, or
+         * urgency for its contents.
          * 
-         * **Importance:** the strong element can be used in a heading, caption, or paragraph to distinguish the part that really matters 
-         * from other parts that might be more detailed, more jovial, or merely boilerplate. (This is distinct from marking up subheadings, 
-         * for which the hgroup element is appropriate.)
+         * **Importance:** the strong element can be used in a heading,
+         * caption, or paragraph to distinguish the part that really matters
+         * from other parts that might be more detailed, more jovial, or
+         * merely boilerplate.  (This is distinct from marking up
+         * subheadings, for which the hgroup element is appropriate.)
          * 
-         * **Example** For example, the first word of the previous paragraph is marked up with strong to distinguish it from the more 
-         * detailed text in the rest of the paragraph.
+         * **Example** For example, the first word of the previous paragraph
+         * is marked up with strong to distinguish it from the more detailed
+         * text in the rest of the paragraph.
          * 
-         * **Seriousness:** the strong element can be used to mark up a warning or caution notice.
+         * **Seriousness:** the strong element can be used to mark up a
+         * **warning or caution notice.
          *
-         * **Urgency:** the strong element can be used to denote contents that the user needs to see sooner than other parts of the document.
+         * **Urgency:** the strong element can be used to denote contents
+         * **that the user needs to see sooner than other parts of the
+         * **document.
          * 
-         * The relative level of importance of a piece of content is given by its number of ancestor strong elements; each strong element 
+         * The relative level of importance of a piece of content is given
+         * by its number of ancestor strong elements; each strong element
          * increases the importance of its contents.
          * 
-         * Changing the importance of a piece of text with the strong element does not change the meaning of the sentence.
+         * Changing the importance of a piece of text with the strong
+         * element does not change the meaning of the sentence.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-strong-element}
          */
@@ -1741,237 +1876,464 @@ export namespace JSX {
         /**
          * The small element represents side comments such as small print.
          * 
-         * **NOTE** Small print typically features disclaimers, caveats, legal restrictions, or copyrights. Small print is also sometimes used 
-         * for attribution, or for satisfying licensing requirements.
+         * **NOTE** Small print typically features disclaimers, caveats,
+         * legal restrictions, or copyrights.  Small print is also sometimes
+         * used for attribution, or for satisfying licensing requirements.
          * 
-         * **NOTE** The small element does not "de-emphasize" or lower the importance of text emphasized by the em element or marked as 
-         * important with the strong element. To mark text as not emphasized or important, simply do not mark it up with the em or strong elements 
-         * respectively.
+         * **NOTE** The small element does not "de-emphasize" or lower the
+         * importance of text emphasized by the em element or marked as
+         * important with the strong element.  To mark text as not
+         * emphasized or important, simply do not mark it up with the em or
+         * strong elements respectively.
          * 
-         * The small element should not be used for extended spans of text, such as multiple paragraphs, lists, or sections of text. It is only 
-         * intended for short runs of text. The text of a page listing terms of use, for instance, would not be a suitable candidate for the small 
-         * element: in such a case, the text is not a side comment, it is the main content of the page.
+         * The small element should not be used for extended spans of text,
+         * such as multiple paragraphs, lists, or sections of text.  It is
+         * only intended for short runs of text.  The text of a page listing
+         * terms of use, for instance, would not be a suitable candidate for
+         * the small element: in such a case, the text is not a side
+         * comment, it is the main content of the page.
          * 
-         * The small element must not be used for subheadings; for that purpose, use the hgroup element.
+         * The small element must not be used for subheadings; for that
+         * purpose, use the hgroup element.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-small-element}
          */
         small: HTMLElementProps
 
         /**
-         * The s element represents contents that are no longer accurate or no longer relevant.
+         * The s element represents contents that are no longer accurate or
+         * no longer relevant.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-s-element}
          */
         s: HTMLElementProps
 
         /**
-         * The cite element represents the title of a work (e.g. a book, a paper, an essay, a poem, a score, a song, a script, a film, a TV show, a game,
-         * a sculpture, a painting, a theatre production, a play, an opera, a musical, an exhibition, a legal case report, a computer program, etc.).
-         *  This can be a work that is being quoted or referenced in detail (i.e., a citation), or it can just be a work that is mentioned in passing.
+         * The cite element represents the title of a work (e.g.  a book, a
+         * paper, an essay, a poem, a score, a song, a script, a film, a TV
+         * show, a game, a sculpture, a painting, a theatre production, a
+         * play, an opera, a musical, an exhibition, a legal case report, a
+         * computer program, etc.).  This can be a work that is being quoted
+         * or referenced in detail (i.e., a citation), or it can just be a
+         * work that is mentioned in passing.
          * 
-         * A person's name is not the title of a work — even if people call that person a piece of work — and the element must therefore not be used 
-         * to mark up people's names. (In some cases, the b element might be appropriate for names; e.g. in a gossip article where the names of famous 
-         * people are keywords rendered with a different style to draw attention to them. In other cases, if an element is really needed, the span element 
-         * can be used.)
+         * A person's name is not the title of a work — even if people call
+         * that person a piece of work — and the element must therefore not
+         * be used to mark up people's names.  (In some cases, the b element
+         * might be appropriate for names; e.g.  in a gossip article where
+         * the names of famous people are keywords rendered with a different
+         * style to draw attention to them.  In other cases, if an element
+         * is really needed, the span element can be used.)
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-cite-element}
          */
         cite: HTMLElementProps
 
         /**
-         * The q element represents some phrasing content quoted from another source.
+         * The q element represents some phrasing content quoted from
+         * another source.
          * 
-         * Quotation punctuation (such as quotation marks) that is quoting the contents of the element must not appear immediately before, after, 
-         * or inside q elements; they will be inserted into the rendering by the user agent.
+         * Quotation punctuation (such as quotation marks) that is quoting
+         * the contents of the element must not appear immediately before,
+         * after, or inside q elements; they will be inserted into the
+         * rendering by the user agent.
          * 
-         * Content inside a q element must be quoted from another source, whose address, if it has one, may be cited in the cite attribute. The 
-         * source may be fictional, as when quoting characters in a novel or screenplay.
+         * Content inside a q element must be quoted from another source,
+         * whose address, if it has one, may be cited in the cite attribute. 
+         * The source may be fictional, as when quoting characters in a
+         * novel or screenplay.
          * 
-         * If the cite attribute is present, it must be a valid URL potentially surrounded by spaces. To obtain the corresponding citation link,
-         * the value of the attribute must be parsed relative to the element's node document. User agents may allow users to follow such citation
-         * links, but they are primarily intended for private use (e.g., by server-side scripts collecting statistics about a site's use of
-         * quotations), not for readers.
+         * If the cite attribute is present, it must be a valid URL
+         * potentially surrounded by spaces.  To obtain the corresponding
+         * citation link, the value of the attribute must be parsed relative
+         * to the element's node document.  User agents may allow users to
+         * follow such citation links, but they are primarily intended for
+         * private use (e.g., by server-side scripts collecting statistics
+         * about a site's use of quotations), not for readers.
          * 
-         * The q element must not be used in place of quotation marks that do not represent quotes; for example, it is inappropriate to use the q 
-         * element for marking up sarcastic statements.
+         * The q element must not be used in place of quotation marks that
+         * do not represent quotes; for example, it is inappropriate to use
+         * the q element for marking up sarcastic statements.
          * 
-         * The use of q elements to mark up quotations is entirely optional; using explicit quotation punctuation without q elements is just as correct.
+         * The use of q elements to mark up quotations is entirely optional;
+         * using explicit quotation punctuation without q elements is just
+         * as correct.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-q-element}
          */
         q: HTMLQuoteElementProps
 
         /**
-         * The dfn element represents the defining instance of a term. The paragraph, description list group, or section that is the nearest ancestor 
-         * of the dfn element must also contain the definition(s) for the term given by the dfn element.
+         * The dfn element represents the defining instance of a term.  The
+         * paragraph, description list group, or section that is the nearest
+         * ancestor of the dfn element must also contain the definition(s)
+         * for the term given by the dfn element.
          * 
-         * Defining term: if the dfn element has a title attribute, then the exact value of that attribute is the term being defined. Otherwise, 
-         * if it contains exactly one element child node and no child Text nodes, and that child element is an abbr element with a title attribute, 
-         * then the exact value of that attribute is the term being defined. Otherwise, it is the descendant text content of the dfn element that 
-         * gives the term being defined.
+         * Defining term: if the dfn element has a title attribute, then the
+         * exact value of that attribute is the term being defined. 
+         * Otherwise, if it contains exactly one element child node and no
+         * child Text nodes, and that child element is an abbr element with
+         * a title attribute, then the exact value of that attribute is the
+         * term being defined.  Otherwise, it is the descendant text content
+         * of the dfn element that gives the term being defined.
          * 
-         * If the title attribute of the dfn element is present, then it must contain only the term being defined.
+         * If the title attribute of the dfn element is present, then it
+         * must contain only the term being defined.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-dfn-element}
          */
         dfn: HTMLElementProps
 
         /**
-         * The abbr element represents an abbreviation or acronym, optionally with its expansion. The title attribute may be used to provide an 
-         * expansion of the abbreviation. The attribute, if specified, must contain an expansion of the abbreviation, and nothing else.
+         * The abbr element represents an abbreviation or acronym,
+         * optionally with its expansion.  The title attribute may be used
+         * to provide an expansion of the abbreviation.  The attribute, if
+         * specified, must contain an expansion of the abbreviation, and
+         * nothing else.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-abbr-element}
          */
         abbr: HTMLElementProps
 
         /**
-         * The ruby element allows one or more spans of phrasing content to be marked with ruby annotations. Ruby annotations are short runs of text 
-         * presented alongside base text, primarily used in East Asian typography as a guide for pronunciation or to include other annotations. 
-         * In Japanese, this form of typography is also known as _furigana_.
+         * The ruby element allows one or more spans of phrasing content to
+         * be marked with ruby annotations.  Ruby annotations are short runs
+         * of text presented alongside base text, primarily used in East
+         * Asian typography as a guide for pronunciation or to include other
+         * annotations.  In Japanese, this form of typography is also known
+         * as _furigana_.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-ruby-element}
          */
         ruby: HTMLElementProps
 
         /**
-         * The rt element marks the ruby text component of a ruby annotation. When it is the child of a ruby element, it doesn't represent anything 
-         * itself, but the ruby element uses it as part of determining what it represents.
+         * The rt element marks the ruby text component of a ruby
+         * annotation.  When it is the child of a ruby element, it doesn't
+         * represent anything itself, but the ruby element uses it as part
+         * of determining what it represents.
          * 
-         * An rt element that is not a child of a ruby element represents the same thing as its children.
+         * An rt element that is not a child of a ruby element represents
+         * the same thing as its children.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-rt-element}
          */
         rt: HTMLElementProps
 
         /**
-         * The rp element can be used to provide parentheses or other content around a ruby text component of a ruby annotation, to be shown by 
-         * user agents that don't support ruby annotations.
+         * The rp element can be used to provide parentheses or other
+         * content around a ruby text component of a ruby annotation, to be
+         * shown by user agents that don't support ruby annotations.
          * 
-         * An rp element that is a child of a ruby element represents nothing. An rp element whose parent element is not a ruby element represents 
-         * its children.
+         * An rp element that is a child of a ruby element represents
+         * nothing.  An rp element whose parent element is not a ruby
+         * element represents its children.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-rp-element}
          */
         rp: HTMLElementProps
 
         /**
-         * The data element represents its contents, along with a machine-readable form of those contents in the value attribute.
+         * The data element represents its contents, along with a
+         * machine-readable form of those contents in the value attribute.
          * 
-         * The value attribute must be present. Its value must be a representation of the element's contents in a machine-readable format.
+         * The value attribute must be present.  Its value must be a
+         * representation of the element's contents in a machine-readable
+         * format.
          * 
-         * **NOTE** When the value is date- or time-related, the more specific time element can be used instead.
+         * **NOTE** When the value is date- or time-related, the more
+         * **specific time element can be used instead.
          * 
          * The element can be used for several purposes.
          * 
-         * When combined with microformats or the microdata attributes defined in this specification, the element serves to provide both a 
-         * machine-readable value for the purposes of data processors, and a human-readable value for the purposes of rendering in a web browser. 
-         * In this case, the format to be used in the value attribute is determined by the microformats or microdata vocabulary in use.
+         * When combined with microformats or the microdata attributes
+         * defined in this specification, the element serves to provide both
+         * a machine-readable value for the purposes of data processors, and
+         * a human-readable value for the purposes of rendering in a web
+         * browser.  In this case, the format to be used in the value
+         * attribute is determined by the microformats or microdata
+         * vocabulary in use.
          * 
-         * The element can also, however, be used in conjunction with scripts in the page, for when a script has a literal value to store 
-         * alongside a human-readable value. In such cases, the format to be used depends only on the needs of the script. (The data-* attributes 
-         * can also be useful in such situations.)
+         * The element can also, however, be used in conjunction with
+         * scripts in the page, for when a script has a literal value to
+         * store alongside a human-readable value.  In such cases, the
+         * format to be used depends only on the needs of the script.  (The
+         * data-* attributes can also be useful in such situations.)
          * 
-         * The value IDL attribute must reflect the content attribute of the same name.
+         * The value IDL attribute must reflect the content attribute of the
+         * same name.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-data-element}
          */
         data: HTMLDataElementProps
 
         /**
-         * The time element represents its contents, along with a machine-readable form of those contents in the datetime attribute.
+         * The time element represents its contents, along with a
+         * machine-readable form of those contents in the datetime
+         * attribute.
          * 
          * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-time-element}
          */
         time: HTMLTimeElementProps
 
         /**
+         * The code element represents a fragment of computer code.  This
+         * could be an XML element name, a filename, a computer program, or
+         * any other string that a computer would recognize.
          * 
-         * @see {@link }
+         * There is no formal way to indicate the language of computer code
+         * being marked up.  Authors who wish to mark code elements with the
+         * language used, e.g.  so that syntax highlighting scripts can use
+         * the right rules, can use the class attribute, e.g.  by adding a
+         * class prefixed with "language-" to the element.
+         * 
+         * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-code-element}
          */
         code: HTMLElementProps
 
         /**
-         * 
-         * @see {@link }
+         * The var element represents a variable.  This could be an actual
+         * variable in a mathematical expression or programming context, an
+         * identifier representing a constant, a symbol identifying a
+         * physical quantity, a function parameter, or just be a term used
+         * as a placeholder in prose.
+         *
+         * For mathematics, in particular for anything beyond the simplest
+         * of expressions, MathML is more appropriate.  However, the var
+         * element can still be used to refer to specific variables that are
+         * then mentioned in MathML expressions.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-var-element}
          */
         var: HTMLElementProps
 
         /**
-         * 
-         * @see {@link }
+         * The samp element represents sample or quoted output from another
+         * program or computing system.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-samp-element}
          */
         samp: HTMLElementProps
 
         /**
-         * 
-         * @see {@link }
+         * The kbd element represents user input (typically keyboard input,
+         * although it may also be used to represent other input, such as
+         * voice commands).
+         *
+         * When the kbd element is nested inside a samp element, it
+         * represents the input as it was echoed by the system.
+         *
+         * When the kbd element contains a samp element, it represents input
+         * based on system output, for example invoking a menu item.
+         *
+         * When the kbd element is nested inside another kbd element, it
+         * represents an actual key or other single unit of input as
+         * appropriate for the input mechanism.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-kbd-element}
          */
         kbd: HTMLElementProps
 
         /**
+         * The sup element represents a superscript and the sub element
+         * represents a subscript.
+         *
+         * These elements must be used only to mark up typographical
+         * conventions with specific meanings, not for typographical
+         * presentation for presentation's sake.  For example, it would be
+         * inappropriate for the sub and sup elements to be used in the name
+         * of the LaTeX document preparation system.  In general, authors
+         * should use these elements only if the absence of those elements
+         * would change the meaning of the content.
+         *
+         * In certain languages, superscripts are part of the typographical
+         * conventions for some abbreviations.
+         *
+         * The sub element can be used inside a var element, for variables
+         * that have subscripts.
+         *
+         * Mathematical expressions often use subscripts and superscripts. 
+         * Authors are encouraged to use MathML for marking up mathematics,
+         * but authors may opt to use sub and sup if detailed mathematical
+         * markup is not desired.
          * 
-         * @see {@link }
+         * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-sub-and-sup-elements}
          */
         sub: HTMLElementProps
 
         /**
+         * The sup element represents a superscript and the sub element
+         * represents a subscript.
+         *
+         * These elements must be used only to mark up typographical
+         * conventions with specific meanings, not for typographical
+         * presentation for presentation's sake.  For example, it would be
+         * inappropriate for the sub and sup elements to be used in the name
+         * of the LaTeX document preparation system.  In general, authors
+         * should use these elements only if the absence of those elements
+         * would change the meaning of the content.
+         *
+         * In certain languages, superscripts are part of the typographical
+         * conventions for some abbreviations.
+         *
+         * The sub element can be used inside a var element, for variables
+         * that have subscripts.
+         *
+         * Mathematical expressions often use subscripts and superscripts. 
+         * Authors are encouraged to use MathML for marking up mathematics,
+         * but authors may opt to use sub and sup if detailed mathematical
+         * markup is not desired.
          * 
-         * @see {@link }
+         * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-sub-and-sup-elements}
          */
         sup: HTMLElementProps
 
         /**
-         * 
-         * @see {@link }
+         * The i element represents a span of text in an alternate voice or
+         * mood, or otherwise offset from the normal prose in a manner
+         * indicating a different quality of text, such as a taxonomic
+         * designation, a technical term, an idiomatic phrase from another
+         * language, transliteration, a thought, or a ship name in Western
+         * texts.
+         *
+         * Terms in languages different from the main text should be
+         * annotated with lang attributes (or, in XML, lang attributes in
+         * the XML namespace).
+         *
+         * Authors can use the class attribute on the i element to identify
+         * why the element is being used, so that if the style of a
+         * particular use (e.g.  dream sequences as opposed to taxonomic
+         * terms) is to be changed at a later date, the author doesn't have
+         * to go through the entire document (or series of related
+         * documents) annotating each use.
+         *
+         * Authors are encouraged to consider whether other elements might
+         * be more applicable than the i element, for instance the em
+         * element for marking up stress emphasis, or the dfn element to
+         * mark up the defining instance of a term.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-i-element}
          */
         i: HTMLElementProps
 
         /**
-         * 
-         * @see {@link }
+         * The b element represents a span of text to which attention is
+         * being drawn for utilitarian purposes without conveying any extra
+         * importance and with no implication of an alternate voice or mood,
+         * such as key words in a document abstract, product names in a
+         * review, actionable words in interactive text-driven software, or
+         * an article lede.
+         *
+         * As with the i element, authors can use the class attribute on the
+         * b element to identify why the element is being used, so that if
+         * the style of a particular use is to be changed at a later date,
+         * the author doesn't have to go through annotating each use.
+         *
+         * The b element should be used as a last resort when no other
+         * element is more appropriate.  In particular, headings should use
+         * the h1 to h6 elements, stress emphasis should use the em element,
+         * importance should be denoted with the strong element, and text
+         * marked or highlighted should use the mark element.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-b-element}
          */
         b: HTMLElementProps
 
         /**
-         * 
-         * @see {@link }
+         * The u element represents a span of text with an unarticulated,
+         * though explicitly rendered, non-textual annotation, such as
+         * labeling the text as being a proper name in Chinese text (a
+         * Chinese proper name mark), or labeling the text as being
+         * misspelt.
+         *
+         * In most cases, another element is likely to be more appropriate:
+         * for marking stress emphasis, the em element should be used; for
+         * marking key words or phrases either the b element or the mark
+         * element should be used, depending on the context; for marking
+         * book titles, the cite element should be used; for labeling text
+         * with explicit textual annotations, the ruby element should be
+         * used; for technical terms, taxonomic designation,
+         * transliteration, a thought, or for labeling ship names in Western
+         * texts, the i element should be used.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-u-element}
          */
         u: HTMLElementProps
 
         /**
-         * 
-         * @see {@link }
+         * The mark element represents a run of text in one document marked
+         * or highlighted for reference purposes, due to its relevance in
+         * another context.  When used in a quotation or other block of text
+         * referred to from the prose, it indicates a highlight that was not
+         * originally present but which has been added to bring the reader's
+         * attention to a part of the text that might not have been
+         * considered important by the original author when the block was
+         * originally written, but which is now under previously unexpected
+         * scrutiny.  When used in the main prose of a document, it
+         * indicates a part of the document that has been highlighted due to
+         * its likely relevance to the user's current activity.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-mark-element}
          */
         mark: HTMLElementProps
 
         /**
-         * 
-         * @see {@link }
+         * The bdi element represents a span of text that is to be isolated
+         * from its surroundings for the purposes of bidirectional text
+         * formatting.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-bdi-element}
          */
         bdi: HTMLElementProps
 
         /**
+         * The bdo element represents explicit text directionality
+         * formatting control for its children.  It allows authors to
+         * override the Unicode bidirectional algorithm by explicitly
+         * specifying a direction override.  [BIDI]
+         *
+         * Authors must specify the dir attribute on this element, with the
+         * value ltr to specify a left-to-right override and with the value
+         * rtl to specify a right-to-left override.  The auto value must not
+         * be specified.
          * 
-         * @see {@link }
+         * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-bdo-element}
          */
         bdo: HTMLElementProps
 
         /**
-         * 
-         * @see {@link }
+         * The span element doesn't mean anything on its own, but can be
+         * useful when used together with the global attributes, e.g. 
+         * class, lang, or dir.  It represents its children.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-span-element}
          */
         span: HTMLElementProps
 
         /**
-         * 
-         * @see {@link }
+         * The br element represents a line break.
+         *
+         * br elements must not be used for separating thematic groups in a
+         * paragraph.
+         *
+         * If a paragraph consists of nothing but a single br element, it
+         * represents a placeholder blank line (e.g.  as in a template). 
+         * Such blank lines must not be used for presentation purposes.
+         *
+         * Any content inside br elements must not be considered part of the
+         * surrounding text.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-br-element}
          */
         br: HTMLElementProps
 
         /**
-         * 
-         * @see {@link }
+         * The wbr element represents a line break opportunity.
+         *
+         * Any content inside wbr elements must not be considered part of
+         * the surrounding text.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-wbr-element}
          */
         wbr: HTMLElementProps
 
@@ -1981,90 +2343,190 @@ export namespace JSX {
         // 4.7 Edits
 
         /**
+         * The ins element represents an addition to the document.
+         *
+         * ins elements should not cross implied paragraph boundaries.
          * 
-         * @see {@link }
+         * @see {@link https://html.spec.whatwg.org/multipage/edits.html#the-ins-element}
          */
         ins: HTMLModElementProps
 
         /**
+         * The del element represents a removal from the document.
+         *
+         * del elements should not cross implied paragraph boundaries.
          * 
-         * @see {@link }
+         * @see {@link https://html.spec.whatwg.org/multipage/edits.html#the-del-element}
          */
         del: HTMLModElementProps
 
         // 4.8 Embedded content
 
         /**
-         * 
-         * @see {@link }
+         * The picture element is a container which provides multiple
+         * sources to its contained img element to allow authors to
+         * declaratively control or give hints to the user agent about which
+         * image resource to use, based on the screen pixel density,
+         * viewport size, image format, and other factors.  It represents
+         * its children.
+         *
+         * **NOTE** The picture element is somewhat different from the
+         * similar-looking video and audio elements.  While all of them
+         * contain source elements, the source element's src attribute has
+         * no meaning when the element is nested within a picture element,
+         * and the resource selection algorithm is different.  Also, the
+         * picture element itself does not display anything; it merely
+         * provides a context for its contained img element that enables it
+         * to choose from multiple URLs.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/embedded-content.html#the-picture-element}
          */
         picture: HTMLElementProps
 
         /**
-         * 
-         * @see {@link }
+         * The source element allows authors to specify multiple alternative
+         * source sets for img elements or multiple alternative media
+         * resources for media elements.  It does not represent anything on
+         * its own.
+         *
+         * The type attribute may be present.  If present, the value must be
+         * a valid MIME type string.
+         *
+         * The media attribute may also be present.  If present, the value
+         * must contain a valid media query list.  The user agent will skip
+         * to the next source element if the value does not match the
+         * environment.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element}
          */
         source: HTMLSourceElementProps
 
         /**
-         * 
-         * @see {@link }
+         * An img element represents an image.
+         *
+         * An img element has a dimension attribute source, initially set to
+         * the element itself.
+         *
+         * The image given by the src and srcset attributes, and any
+         * previous sibling source elements' srcset attributes if the parent
+         * is a picture element, is the embedded content; the value of the
+         * alt attribute provides equivalent content for those who cannot
+         * process images or who have image loading disabled (i.e.  it is
+         * the img element's fallback content).
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element}
          */
         img: HTMLImageElementProps
 
         /**
-         * 
-         * @see {@link }
+         * The iframe element represents its content navigable.
+         *
+         * The src attribute gives the URL of a page that the element's
+         * content navigable is to contain.  The attribute, if present, must
+         * be a valid non-empty URL potentially surrounded by spaces.  If
+         * the itemprop attribute is specified on an iframe element, then
+         * the src attribute must also be specified.
+         *
+         * The srcdoc attribute gives the content of the page that the
+         * element's content navigable is to contain.  The value of the
+         * attribute is the source of an iframe srcdoc document.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-iframe-element}
          */
         iframe: HTMLIFrameElementProps
 
         /**
-         * 
-         * @see {@link }
+         * The embed element provides an integration point for an external
+         * application or interactive content.
+         *
+         * The src attribute gives the URL of the resource being embedded. 
+         * The attribute, if present, must contain a valid non-empty URL
+         * potentially surrounded by spaces.
+         *
+         * If the itemprop attribute is specified on an embed element, then
+         * the src attribute must also be specified.
+         *
+         * The type attribute, if present, gives the MIME type by which the
+         * plugin to instantiate is selected.  The value must be a valid
+         * MIME type string.  If both the type attribute and the src
+         * attribute are present, then the type attribute must specify the
+         * same type as the explicit Content-Type metadata of the resource
+         * given by the src attribute.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-embed-element}
          */
         embed: HTMLEmbedElementProps
 
         /**
-         * 
-         * @see {@link }
+         * The object element can represent an external resource, which,
+         * depending on the type of the resource, will either be treated as
+         * an image or as a child navigable.
+         *
+         * The data attribute specifies the URL of the resource.  It must be
+         * present, and must contain a valid non-empty URL potentially
+         * surrounded by spaces.
+         *
+         * The type attribute, if present, specifies the type of the
+         * resource.  If present, the attribute must be a valid MIME type
+         * string.
+         *
+         * The name attribute, if present, must be a valid navigable target
+         * name.  The given value is used to name the element's content
+         * navigable, if applicable, and if present when the element's
+         * content navigable is created.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-object-element}
          */
         object: HTMLObjectElementProps
 
         /**
-         * 
-         * @see {@link }
+         * @deprecated
          */
         param: HTMLParamElementProps
 
         /**
-         * 
-         * @see {@link }
+         * A video element is used for playing videos or movies, and audio
+         * files with captions.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/media.html#the-video-element}
          */
         video: HTMLVideoElementProps
 
         /**
-         * 
-         * @see {@link }
+         * An audio element represents a sound or audio stream.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/media.html#the-audio-element}
          */
         audio: HTMLMediaElementProps
 
         /**
-         * 
-         * @see {@link }
+         * The track element allows authors to specify explicit external
+         * timed text tracks for media elements.  It does not represent
+         * anything on its own.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/media.html#the-track-element}
          */
         track: HTMLTrackElementProps
 
         /**
-         * 
-         * @see {@link }
+         * The map element, in conjunction with an img element and any area
+         * element descendants, defines an image map.  The element
+         * represents its children.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/image-maps.html#the-map-element}
          */
         map: HTMLMapElementProps
 
         /**
-         * 
-         * @see {@link }
+         * The area element represents either a hyperlink with some text and
+         * a corresponding area on an image map, or a dead area on an image
+         * map.
+         *
+         * @see {@link https://html.spec.whatwg.org/multipage/image-maps.html#the-area-element}
          */
         area: HTMLAreaElementProps
+
+        // 4.8 MathML, SVG
 
         // 4.9 Tabular data
 

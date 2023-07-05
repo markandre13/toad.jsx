@@ -894,6 +894,7 @@ export namespace JSX {
     }
 
     interface HTMLAnchorElementProps extends HTMLElementProps {
+        href?: string,
         target?: string
         download?: string // any?
         ping?: string

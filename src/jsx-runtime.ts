@@ -2853,7 +2853,7 @@ export class Reference<T> {
         return (this.object as any)[this.attribute]
     }
     set(value: any) {
-        Object.defineProperty(this.object, this.attribute, { value: value })
+        Object.defineProperty(this.object, this.attribute, { value: value, writable: true })
     }
 
     toString(): string {
@@ -2872,7 +2872,7 @@ export class Reference<T> {
             default:
                 throw Error(`Reference.fromString() isn't yet supported for type ${type}`)
         }
-        Object.defineProperty(this.object, this.attribute, { value: outValue })
+        Object.defineProperty(this.object, this.attribute, { value: outValue, writable: true })
     }
 }
 
@@ -2965,7 +2965,7 @@ export function setInitialProperties(element: HTMLElement | SVGElement, props: a
                 }
                 break
             case "set":
-                Object.defineProperty(props.set!.object, props.set!.attribute, { value: element })
+                Object.defineProperty(props.set!.object, props.set!.attribute, { value: element, writable: true })
                 break
             default:
                 if (key.substring(0, 2) === "on") {

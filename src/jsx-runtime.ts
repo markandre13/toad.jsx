@@ -2904,19 +2904,29 @@ export class Fragment extends Array<Element | Text> {
     }
 }
 
+type ObjectComponent = { new (...args: any[]): HTMLElement | SVGSVGElement }
+type FunctionComponent = { (...args: any[]): HTMLElement | SVGSVGElement }
+
 // https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
-export function jsx(nameOrConstructor: string | { new (...args: any[]): any }, props: any, key?: string) {
+export function jsx(nameOrConstructor: string | ObjectComponent | FunctionComponent, props: any, key?: string) {
     if (props !== undefined && props.children !== undefined) {
         props.children = [props.children]
     }
     return jsxs(nameOrConstructor, props)
 }
 
-export function jsxs(nameOrConstructor: string | { new (...args: any[]): any }, props: any, key?: string) {
+export function jsxs(
+    nameOrConstructor: string | ObjectComponent | FunctionComponent,
+    props: any,
+    key?: string
+) {
     let namespace
-
     if (typeof nameOrConstructor !== "string") {
-        return new nameOrConstructor(props)
+        if (nameOrConstructor.prototype !== undefined) {
+            return new (nameOrConstructor as ObjectComponent)(props)
+        } else {
+            return (nameOrConstructor as FunctionComponent)(props)
+        }
     }
 
     const name = nameOrConstructor as string

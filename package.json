@@ -13,6 +13,7 @@
   },
   "scripts": {
       "build": "tsc",
+      "dev:build": "tsc -w",
       "update": "npx npm-check-updates -u && npm install"
   },
   "devDependencies": {

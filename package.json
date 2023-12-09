@@ -17,9 +17,9 @@
       "update": "npx npm-check-updates -u && npm install"
   },
   "devDependencies": {
-    "typescript": "^5.3.2"
+    "typescript": "^5.3.3"
   },
   "dependencies": {
-    "csstype": "^3.1.2"
+    "csstype": "^3.1.3"
   }
 }

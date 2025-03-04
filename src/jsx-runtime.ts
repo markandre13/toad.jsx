@@ -795,6 +795,7 @@ export namespace JSX {
 
     // 3.2.2 Elements in the DOM
     export interface HTMLElementProps extends ElementProps, GlobalEventHandlerProps, AriaAttributes {
+        children?: any
         // metadata attributes
         title?: string
         lang?: string

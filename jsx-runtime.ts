@@ -46,6 +46,7 @@ export namespace JSX {
     }
 
     interface ToadProps {
+        ref?: unknown | ((e: unknown) => void) | undefined
         set?: Reference<any> // FIXME: we might be able to specify the exact type here
     }
 
@@ -2960,6 +2961,8 @@ export function setInitialProperties<P extends ParamBase>(element: HTMLElement |
                     element.style.setProperty(skey, svalue as string)
                 }
                 break
+            case "ref":
+                break
             case "set":
                 Object.defineProperty(props.set!.object, props.set!.attribute, { value: element, writable: true })
                 break
@@ -3071,19 +3074,11 @@ function untrack<T>(fn: () => T) {
     return fn()
 }
 
-function log(s: string, a: any) {
-    if (a === null) {
-        console.log(`${s}: null`)
-        return
-    }
-    if (typeof a === "object") {
-        console.log(`${s}: class ${a.constructor.name} = %o`, a)
-        return
-    }
-    console.log(`${s}: ${typeof a} = %o`, a)
-}
-
 type MountableElement = Element | Document | ShadowRoot | DocumentFragment | Node
+
+export function use<Arg, Ret>(fn: (node: Element, arg: Arg) => Ret, element: Element, arg?: Arg): Ret {
+  return untrack(() => fn(element, arg!));
+}
 
 export function insert<T>(
     parent: MountableElement,

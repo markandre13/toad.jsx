@@ -2895,7 +2895,7 @@ type ClassComponent<P extends ParamBase> = { new(props: P): HTMLElement | SVGSVG
 type FunctionComponent<P extends ParamBase> = { (props: P): HTMLElement | SVGSVGElement }
 
 // https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
-export function jsx<P extends ParamBase>(nameOrConstructor: string | ClassComponent<P> | FunctionComponent<P>, props: P, key?: string) {
+export function jsx<P extends ParamBase>(nameOrConstructor: string | ClassComponent<P> | FunctionComponent<P>, props: P, _key?: string) {
     if (props !== undefined && props.children !== undefined) {
         props.children = [props.children as any]
     }
@@ -2905,7 +2905,7 @@ export function jsx<P extends ParamBase>(nameOrConstructor: string | ClassCompon
 export function jsxs<P extends ParamBase>(
     nameOrConstructor: string | ClassComponent<P> | FunctionComponent<P>,
     props: P,
-    key?: string
+    _key?: string
 ) {
     if (typeof nameOrConstructor !== "string") {
         if (nameOrConstructor.prototype !== undefined) {
@@ -3049,7 +3049,7 @@ export function replaceChildren(parent: Element, content: JSX.Element) {
  */
 export type Component<P extends Record<string, any> = {}> = FunctionComponent<P> | ClassComponent<P>
 
-export function template(html: string, isCE?: boolean, isSVG?: boolean, isMathML?: boolean): () => ChildNode {
+export function template(html: string, _isCE?: boolean, isSVG?: boolean, isMathML?: boolean): () => ChildNode {
     return () => {
         const t = isMathML
             ? document.createElementNS("http://www.w3.org/1998/Math/MathML", "template") as HTMLTemplateElement
@@ -3070,6 +3070,104 @@ export function createComponent<T extends Record<string, any>>(
     }
 }
 
+export function setAttribute(node: Element, name: string, value: string): void {
+    if (value == null) node.removeAttribute(name)
+    else node.setAttribute(name, value)
+}
+
+export function setAttributeNS(node: Element, namespace: string, name: string, value: string): void {
+    if (value == null) node.removeAttributeNS(namespace, name)
+    else node.setAttributeNS(namespace, name, value)
+}
+
+export function setBoolAttribute(node: Element, name: string, value: any): void {
+    value ? node.setAttribute(name, "") : node.removeAttribute(name)
+}
+
+export function className(node: Element, value: string): void {
+    if (value == null) node.removeAttribute("class")
+    else node.className = value
+}
+
+export function addEventListener(
+    node: Element,
+    name: string,
+    handler: EventListener | EventListenerObject | (EventListenerObject & AddEventListenerOptions),
+    delegate: boolean
+): void {
+    if (delegate) {
+        if (Array.isArray(handler)) {
+            (node as any)[`$$${name}`] = handler[0]
+                (node as any)[`$$${name}Data`] = handler[1]
+        } else (node as any)[`$$${name}`] = handler
+    } else if (Array.isArray(handler)) {
+        const handlerFn = handler[0]
+        node.addEventListener(name, (handler[0] = (e: any) => handlerFn.call(node, handler[1], e)))
+    } else (node as any).addEventListener(name, handler, typeof handler !== "function" && handler)
+}
+
+export function classList(
+    node: Element,
+    value: { [k: string]: boolean },
+    prev?: { [k: string]: boolean }
+): { [k: string]: boolean } {
+    const classKeys = Object.keys(value || {}),
+        prevKeys = Object.keys(prev!)
+    let i, len
+    for (i = 0, len = prevKeys.length; i < len; i++) {
+        const key = prevKeys[i]
+        if (!key || key === "undefined" || value[key]) continue
+        toggleClassKey(node, key, false)
+        delete prev![key]
+    }
+    for (i = 0, len = classKeys.length; i < len; i++) {
+        const key = classKeys[i],
+            classValue = !!value[key]
+        if (!key || key === "undefined" || prev![key] === classValue || !classValue) continue
+        toggleClassKey(node, key, true)
+        prev![key] = classValue
+    }
+    return prev!
+}
+
+function toggleClassKey(node: Element, key: string, value: boolean) {
+    const classNames = key.trim().split(/\s+/)
+    for (let i = 0, nameLen = classNames.length; i < nameLen; i++)
+        node.classList.toggle(classNames[i], value)
+}
+
+export function style(node: Element,
+    value: { [k: string]: string },
+    prev?: { [k: string]: string }
+): any {
+    if (!value) return prev ? setAttribute(node, "style", undefined as any) : value
+    const nodeStyle = (node as HTMLElement).style
+    if (typeof value === "string") return (nodeStyle.cssText = value)
+    typeof prev === "string" && (nodeStyle.cssText = prev = undefined as any)
+    prev || (prev = {})
+    value || (value = {})
+    let v, s
+    for (s in prev) {
+        value[s] == null && nodeStyle.removeProperty(s)
+        delete prev[s]
+    }
+    for (s in value) {
+        v = value[s]
+        if (v !== prev[s]) {
+            nodeStyle.setProperty(s, v)
+            prev[s] = v
+        }
+    }
+    return prev
+}
+
+export function setStyleProperty(node: Element, name: string, value: any) {
+    value != null
+        ? (node as HTMLElement).style.setProperty(name, value)
+        : (node as HTMLElement).style.removeProperty(name)
+}
+
+
 function untrack<T>(fn: () => T) {
     return fn()
 }
@@ -3077,7 +3175,7 @@ function untrack<T>(fn: () => T) {
 type MountableElement = Element | Document | ShadowRoot | DocumentFragment | Node
 
 export function use<Arg, Ret>(fn: (node: Element, arg: Arg) => Ret, element: Element, arg?: Arg): Ret {
-  return untrack(() => fn(element, arg!));
+    return untrack(() => fn(element, arg!))
 }
 
 export function insert<T>(

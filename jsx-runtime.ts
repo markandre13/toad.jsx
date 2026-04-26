@@ -2904,7 +2904,7 @@ export function jsx<P extends ParamBase>(nameOrConstructor: string | ClassCompon
 
 export function jsxs<P extends ParamBase>(
     nameOrConstructor: string | ClassComponent<P> | FunctionComponent<P>,
-    props: any,
+    props: P,
     key?: string
 ) {
     if (typeof nameOrConstructor !== "string") {
@@ -2936,9 +2936,8 @@ export function jsxs<P extends ParamBase>(
     return tag
 }
 
-export function setInitialProperties(element: HTMLElement | SVGElement, props: any, namespaceName?: string) {
+export function setInitialProperties<P extends ParamBase>(element: HTMLElement | SVGElement, props?: P, namespaceName?: string) {
     if (props === null || props === undefined) return
-
     for (let [key, value] of Object.entries(props)) {
         switch (key) {
             case "children":
@@ -2973,6 +2972,9 @@ export function setInitialProperties(element: HTMLElement | SVGElement, props: a
                         if (namespaceName === "http://www.w3.org/2000/svg") {
                             const regex = /[A-Z]/g
                             key = key.replace(regex, (upperCase) => "-" + upperCase.toLowerCase())
+                        }
+                        if (namespaceName === "http://www.w3.org/1999/xhtml") {
+                            namespaceName = undefined
                         }
                         element.setAttributeNS(namespaceName ? namespaceName : null, key, `${value}`)
                     }

@@ -1,14 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es2020",
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
+    "target": "es6",
+    "moduleResolution": "node",
     "traceResolution": false,
     "esModuleInterop": true,
     "declaration": true,
     "lib": [ "ESNext", "DOM" ],
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
+    "resolveJsonModule": false,
     "removeComments": false,
     "experimentalDecorators": true,
     "noImplicitOverride": true,

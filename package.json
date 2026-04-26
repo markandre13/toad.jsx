@@ -4,7 +4,13 @@
     "description": "jsx for toad.js",
     "author": "Mark-André Hopf <mhopf@mark13.org>",
     "license": "AGPL-3.0",
+    "main": "jsx-runtime.js",
+    "module": "jsx-runtime.js",
     "types": "jsx-runtime.d.ts",
+    "exports": {
+        ".": "./jsx-runtime.js",
+        "./jsx-runtime": "./jsx-runtime.js"
+    },
     "files": [
         "package.json",
         "jsx-runtime.js",
@@ -21,9 +27,9 @@
         "update": "npx npm-check-updates -u && npm install"
     },
     "devDependencies": {
-        "typescript": "^6.0.3"
+        "typescript": "^5.8.2"
     },
     "dependencies": {
-        "csstype": "^3.2.3"
+        "csstype": "^3.1.3"
     }
 }

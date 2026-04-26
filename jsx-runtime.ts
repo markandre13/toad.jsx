@@ -2826,7 +2826,6 @@ export namespace JSX {
 
         use: {
             href?: string
-            'xlink:href'?: string
             x?: string | number
             y?: string | number
             width?: string | number
@@ -2973,10 +2972,7 @@ export function setInitialProperties<P extends ParamBase>(element: HTMLElement |
                             const regex = /[A-Z]/g
                             key = key.replace(regex, (upperCase) => "-" + upperCase.toLowerCase())
                         }
-                        if (namespaceName === "http://www.w3.org/1999/xhtml") {
-                            namespaceName = undefined
-                        }
-                        element.setAttributeNS(namespaceName ? namespaceName : null, key, `${value}`)
+                        element.setAttributeNS(null, key, `${value}`)
                     }
                 }
         }

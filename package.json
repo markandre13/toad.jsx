@@ -1,25 +1,31 @@
 {
-  "name": "toad.jsx",
-  "version": "0.0.13",
-  "description": "jsx for toad.js",
-  "author": "Mark-André Hopf <mhopf@mark13.org>",
-  "license": "AGPL-3.0",
-  "main": "lib/jsx-runtime.js",
-  "module": "lib/jsx-runtime.js",
-  "types": "lib/jsx-runtime.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/markandre13/toad.jsx.git"
-  },
-  "scripts": {
-      "build": "tsc",
-      "dev:build": "tsc -w",
-      "update": "npx npm-check-updates -u && npm install"
-  },
-  "devDependencies": {
-    "typescript": "^5.8.2"
-  },
-  "dependencies": {
-    "csstype": "^3.1.3"
-  }
+    "name": "toad.jsx",
+    "version": "0.0.13",
+    "description": "jsx for toad.js",
+    "author": "Mark-André Hopf <mhopf@mark13.org>",
+    "license": "AGPL-3.0",
+    "main": "jsx-runtime.js",
+    "module": "jsx-runtime.js",
+    "types": "jsx-runtime.d.ts",
+    "files": [
+        "package.json",
+        "jsx-runtime.js",
+        "jsx-runtime.d.ts",
+        "jsx-runtime.js.map"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/markandre13/toad.jsx.git"
+    },
+    "scripts": {
+        "build": "tsc",
+        "dev:build": "tsc -w",
+        "update": "npx npm-check-updates -u && npm install"
+    },
+    "devDependencies": {
+        "typescript": "^5.8.2"
+    },
+    "dependencies": {
+        "csstype": "^3.1.3"
+    }
 }

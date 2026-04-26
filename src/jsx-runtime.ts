@@ -19,6 +19,10 @@
 import type * as CSS from "csstype"
 
 export namespace JSX {
+    // solid/dom-expressions/
+    export interface ArrayElement extends Array<Element> { }
+    export type Element = Node | ArrayElement | (string & {}) | number | boolean | null | undefined
+
     type SVGPreserveAspectRatioAlign =
         | "none"
         | "xMinYMin"
@@ -46,7 +50,7 @@ export namespace JSX {
     }
 
     // use csstype's nice CSS definitons and comments for VSCode's Intellisense
-    export interface CSSProperties extends CSS.Properties<string | number> {}
+    export interface CSSProperties extends CSS.Properties<string | number> { }
 
     // copy'n pasted Aria definitions from DefinitelyTyped/types/react/index.d.ts
 
@@ -194,16 +198,16 @@ export namespace JSX {
          * @see aria-atomic.
          */
         "aria-relevant"?:
-            | "additions"
-            | "additions removals"
-            | "additions text"
-            | "all"
-            | "removals"
-            | "removals additions"
-            | "removals text"
-            | "text"
-            | "text additions"
-            | "text removals"
+        | "additions"
+        | "additions removals"
+        | "additions text"
+        | "all"
+        | "removals"
+        | "removals additions"
+        | "removals text"
+        | "text"
+        | "text additions"
+        | "text removals"
         /** Indicates that user input is required on the element before a form may be submitted. */
         "aria-required"?: boolean | "false" | "true"
         /** Defines a human-readable, author-localized description for the role of an element. */
@@ -868,13 +872,13 @@ export namespace JSX {
         name?: string
         // http-equiv
         httpEquiv?:
-            | "content-languagle"
-            | "content-type"
-            | "default-style"
-            | "refresh"
-            | "set-cookie"
-            | "x-ua-compatible"
-            | "content-security-policy"
+        | "content-languagle"
+        | "content-type"
+        | "default-style"
+        | "refresh"
+        | "set-cookie"
+        | "x-ua-compatible"
+        | "content-security-policy"
         content?: string
         charset?: string // not part of the DOM?
     }
@@ -1084,29 +1088,9 @@ export namespace JSX {
         size?: number
         src?: string
         step?: string
-        type?:
-            | "button"
-            | "checkbox"
-            | "image"
-            | "radio"
-            | "color"
-            | "date"
-            | "datetime"
-            | "datetime-local"
-            | "email"
-            | "file"
-            | "hidden"
-            | "month"
-            | "number"
-            | "password"
-            | "range"
-            | "research"
-            | "search"
-            | "submit"
-            | "tel"
-            | "text"
-            | "url"
-            | "week"
+        type?: "button" | "checkbox" | "image" | "radio" | "color" | "date" | "datetime" | "datetime-local" | "email" | "file"
+        | "hidden" | "month" | "number" | "password" | "range" | "research" | "search" | "submit" | "tel" | "text" | "url"
+        | "week"
         defaultValue?: string
         value?: string
         // valueAsDate
@@ -2839,6 +2823,15 @@ export namespace JSX {
             class?: string
             set?: Reference<any>
         }
+
+        use: {
+            href?: string
+            'xlink:href'?: string
+            x?: string | number
+            y?: string | number
+            width?: string | number
+            height?: string | number
+        }
     }
 }
 
@@ -2905,7 +2898,7 @@ export class Fragment extends Array<Element | Text> {
     }
 }
 
-type ObjectComponent = { new (...args: any[]): HTMLElement | SVGSVGElement }
+type ObjectComponent = { new(...args: any[]): HTMLElement | SVGSVGElement }
 type FunctionComponent = { (...args: any[]): HTMLElement | SVGSVGElement }
 
 // https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
@@ -2921,7 +2914,7 @@ export function jsxs(
     props: any,
     key?: string
 ) {
-    let namespace
+    let namespaceName
     if (typeof nameOrConstructor !== "string") {
         if (nameOrConstructor.prototype !== undefined) {
             return new (nameOrConstructor as ObjectComponent)(props)
@@ -2939,17 +2932,18 @@ export function jsxs(
         case "circle":
         case "path":
         case "text":
-            namespace = "http://www.w3.org/2000/svg"
+        case "use":
+            namespaceName = "http://www.w3.org/2000/svg"
             break
         default:
-            namespace = "http://www.w3.org/1999/xhtml"
+            namespaceName = "http://www.w3.org/1999/xhtml"
     }
-    const tag = document.createElementNS(namespace, name) as HTMLElement | SVGSVGElement
-    setInitialProperties(tag, props, namespace)
+    const tag = document.createElementNS(namespaceName, name) as HTMLElement | SVGSVGElement
+    setInitialProperties(tag, props, namespaceName)
     return tag
 }
 
-export function setInitialProperties(element: HTMLElement | SVGElement, props: any, namespace?: string) {
+export function setInitialProperties(element: HTMLElement | SVGElement, props: any, namespaceName?: string) {
     if (props === null || props === undefined) return
 
     for (let [key, value] of Object.entries(props)) {
@@ -2957,10 +2951,10 @@ export function setInitialProperties(element: HTMLElement | SVGElement, props: a
             case "children":
                 break
             case "action":
-                ;(element as any).setAction(value)
+                ; (element as any).setAction(value)
                 break
             case "model":
-                ;(element as any).setModel(value)
+                ; (element as any).setModel(value)
                 break
             case "class":
                 element.classList.add(value as string) // FIXME: value is whitespace separated list
@@ -2983,11 +2977,11 @@ export function setInitialProperties(element: HTMLElement | SVGElement, props: a
                     element.addEventListener(key.substring(2), value as () => void)
                 } else {
                     if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") {
-                        if (namespace === "http://www.w3.org/2000/svg") {
+                        if (namespaceName === "http://www.w3.org/2000/svg") {
                             const regex = /[A-Z]/g
                             key = key.replace(regex, (upperCase) => "-" + upperCase.toLowerCase())
                         }
-                        element.setAttributeNS(null, key, `${value}`)
+                        element.setAttributeNS(namespaceName ? namespaceName : null, key, `${value}`)
                     }
                 }
         }
@@ -3018,7 +3012,7 @@ function appendChildren(element: HTMLElement | SVGElement, children: Array<any>)
 // export function createElement(name: string | FunctionConstructor, props: JSX.HTMLElementProps, ...children: any): Element | Fragment {
 // }
 // backward compability
-export function createElement(nameOrConstructor: string | { new (...args: any[]): any }, props: any, ...children: any) {
+export function createElement(nameOrConstructor: string | { new(...args: any[]): any }, props: any, ...children: any) {
     // console.log(`createElement(${nameOrConstructor}, ${JSON.stringify(props)}, ${children}`)
 
     // props: remove 'key', add 'children'
@@ -3038,3 +3032,275 @@ export function createElement(nameOrConstructor: string | { new (...args: any[])
 }
 
 export type HTMLElementProps = JSX.HTMLElementProps
+
+//
+// SOLIDJS JSX SUPPORT
+//
+
+// see dom-expressions/packages/dom-expressions/src/client.js
+
+/**
+ * A general `Component` has no implicit `children` prop.  If desired, you can
+ * specify one as in `Component<{name: String, children: JSX.Element}>`.
+ */
+
+// export type FunctionComponent<P> = (props: P) => JSX.Element
+// export type ClassComponent = new (props: any) => any
+
+type FC<P> = (props: P) => JSX.Element
+type CC<P> = new (props: P) => JSX.Element
+export type Component<P extends Record<string, any> = {}> = FC<P> | CC<P>
+
+export function template(html: string, isCE?: boolean, isSVG?: boolean, isMathML?: boolean): () => ChildNode {
+    return () => {
+        const t = isMathML
+            ? document.createElementNS("http://www.w3.org/1998/Math/MathML", "template") as HTMLTemplateElement
+            : document.createElement("template")
+        t.innerHTML = html
+        return isSVG ? t.content.firstChild?.firstChild! : isMathML ? t.firstChild! : t.content.firstChild!
+    }
+}
+
+export function createComponent<T extends Record<string, any>>(
+    Comp: Component<T>,
+    props: T
+): JSX.Element {
+    try {
+        return untrack(() => (Comp as FC<T>)(props || ({} as T)))
+    } catch (e) {
+        if (e instanceof TypeError) {
+            return untrack(() => new (Comp as CC<T>)(props))
+        }
+        throw e
+    }
+}
+
+function untrack<T>(fn: () => T) {
+    return fn()
+}
+
+function log(s: string, a: any) {
+    if (a === null) {
+        console.log(`${s}: null`)
+        return
+    }
+    if (typeof a === "object") {
+        console.log(`${s}: class ${a.constructor.name} = %o`, a)
+        return
+    }
+    console.log(`${s}: ${typeof a} = %o`, a)
+}
+
+type MountableElement = Element | Document | ShadowRoot | DocumentFragment | Node
+
+export function insert<T>(
+    parent: MountableElement,
+    accessor: (() => T) | T,
+    marker?: Node | null,
+    initial?: JSX.Element
+): JSX.Element {
+    if (marker !== undefined && !initial) initial = []
+    if (typeof accessor !== "function") return insertExpression(parent, accessor, initial, marker)
+    effect(current => insertExpression(parent, (accessor as () => T)(), current, marker), initial)
+}
+
+export function effect<T>(fn: (prev?: T) => T, init?: T): void {
+    fn(init)
+}
+
+function insertExpression(parent: MountableElement, value: any, current: any, marker: any, unwrapArray?: any) {
+    while (typeof current === "function") current = current()
+    if (value === current) return current
+    const t = typeof value,
+        multi = marker !== undefined
+    parent = (multi && current[0] && current[0].parentNode) || parent
+
+    if (t === "string" || t === "number") {
+        if (t === "number") {
+            value = value.toString()
+            if (value === current) return current
+        }
+        if (multi) {
+            let node = current[0]
+            if (node && node.nodeType === 3) {
+                node.data !== value && (node.data = value)
+            } else node = document.createTextNode(value)
+            current = cleanChildren(parent, current, marker, node)
+        } else {
+            if (current !== "" && typeof current === "string") {
+                current = (parent as any).firstChild.data = value
+            } else current = (parent as Element).textContent = value
+        }
+    } else if (value == null || t === "boolean") {
+        current = cleanChildren(parent, current, marker)
+    } else if (t === "function") {
+        effect(() => {
+            let v = value()
+            while (typeof v === "function") v = v()
+            current = insertExpression(parent, v, current, marker)
+        })
+        return () => current
+    } else if (Array.isArray(value)) {
+        const array: any[] = []
+        const currentArray = current && Array.isArray(current)
+        if (normalizeIncomingArray(array, value, current, unwrapArray)) {
+            effect(() => (current = insertExpression(parent, array, current, marker, true)))
+            return () => current
+        }
+        if (array.length === 0) {
+            current = cleanChildren(parent, current, marker)
+            if (multi) return current
+        } else if (currentArray) {
+            if (current.length === 0) {
+                appendNodes(parent, array, marker)
+            } else reconcileArrays(parent, current, array)
+        } else {
+            current && cleanChildren(parent)
+            appendNodes(parent, array)
+        }
+        current = array
+    } else if (value.nodeType) {
+        if (Array.isArray(current)) {
+            if (multi) return (current = cleanChildren(parent, current, marker, value))
+            cleanChildren(parent, current, null, value)
+        } else if (current == null || current === "" || !parent.firstChild) {
+            parent.appendChild(value)
+        } else parent.replaceChild(value, parent.firstChild)
+        current = value
+    } else console.warn(`Unrecognized value. Skipped inserting`, value)
+
+    return current
+}
+
+function normalizeIncomingArray(normalized: any, array: any, current: any, unwrap?: any): any {
+    let dynamic = false
+    for (let i = 0, len = array.length; i < len; i++) {
+        let item = array[i],
+            prev = current && current[normalized.length],
+            t
+        if (item == null || item === true || item === false) {
+            // matches null, undefined, true or false
+            // skip
+        } else if ((t = typeof item) === "object" && item.nodeType) {
+            normalized.push(item)
+        } else if (Array.isArray(item)) {
+            dynamic = normalizeIncomingArray(normalized, item, prev) || dynamic
+        } else if (t === "function") {
+            if (unwrap) {
+                while (typeof item === "function") item = item()
+                dynamic =
+                    normalizeIncomingArray(
+                        normalized,
+                        Array.isArray(item) ? item : [item],
+                        Array.isArray(prev) ? prev : [prev]
+                    ) || dynamic
+            } else {
+                normalized.push(item)
+                dynamic = true
+            }
+        } else {
+            const value = String(item)
+            if (prev && prev.nodeType === 3 && prev.data === value) normalized.push(prev)
+            else normalized.push(document.createTextNode(value))
+        }
+    }
+    return dynamic
+}
+
+function appendNodes(parent: any, array: any, marker: any = null) {
+    for (let i = 0, len = array.length; i < len; i++) parent.insertBefore(array[i], marker)
+}
+
+function cleanChildren(parent: any, current?: any, marker?: any, replacement?: any) {
+    if (marker === undefined) return (parent.textContent = "")
+    const node = replacement || document.createTextNode("")
+    if (current.length) {
+        let inserted = false
+        for (let i = current.length - 1; i >= 0; i--) {
+            const el = current[i]
+            if (node !== el) {
+                const isParent = el.parentNode === parent
+                if (!inserted && !i)
+                    isParent ? parent.replaceChild(node, el) : parent.insertBefore(node, marker)
+                else isParent && el.remove()
+            } else inserted = true
+        }
+    } else parent.insertBefore(node, marker)
+    return [node]
+}
+
+// Slightly modified version of: https://github.com/WebReflection/udomdiff/blob/master/index.js
+export function reconcileArrays(parentNode: Node, a: Node[], b: Node[]): void {
+    let bLength = b.length,
+        aEnd = a.length,
+        bEnd = bLength,
+        aStart = 0,
+        bStart = 0,
+        after = a[aEnd - 1].nextSibling,
+        map = null
+
+    while (aStart < aEnd || bStart < bEnd) {
+        // common prefix
+        if (a[aStart] === b[bStart]) {
+            aStart++
+            bStart++
+            continue
+        }
+        // common suffix
+        while (a[aEnd - 1] === b[bEnd - 1]) {
+            aEnd--
+            bEnd--
+        }
+        // append
+        if (aEnd === aStart) {
+            const node =
+                bEnd < bLength
+                    ? bStart
+                        ? b[bStart - 1].nextSibling
+                        : b[bEnd - bStart]
+                    : after
+
+            while (bStart < bEnd) parentNode.insertBefore(b[bStart++], node)
+            // remove
+        } else if (bEnd === bStart) {
+            while (aStart < aEnd) {
+                if (!map || !map.has(a[aStart])) (a[aStart] as Element).remove()
+                aStart++
+            }
+            // swap backward
+        } else if (a[aStart] === b[bEnd - 1] && b[bStart] === a[aEnd - 1]) {
+            const node = a[--aEnd].nextSibling
+            parentNode.insertBefore(b[bStart++], a[aStart++].nextSibling)
+            parentNode.insertBefore(b[--bEnd], node)
+
+            a[aEnd] = b[bEnd]
+            // fallback to map
+        } else {
+            if (!map) {
+                map = new Map()
+                let i = bStart
+
+                while (i < bEnd) map.set(b[i], i++)
+            }
+
+            const index = map.get(a[aStart])
+            if (index != null) {
+                if (bStart < index && index < bEnd) {
+                    let i = aStart,
+                        sequence = 1,
+                        t
+
+                    while (++i < aEnd && i < bEnd) {
+                        if ((t = map.get(a[i])) == null || t !== index + sequence) break
+                        sequence++
+                    }
+
+                    if (sequence > index - bStart) {
+                        const node = a[aStart]
+                        while (bStart < index) parentNode.insertBefore(b[bStart++], node)
+                    } else parentNode.replaceChild(b[bStart++], a[aStart++])
+                } else aStart++
+            } else (a[aStart++] as Element).remove()
+        }
+    }
+}

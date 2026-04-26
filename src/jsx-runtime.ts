@@ -2888,43 +2888,36 @@ export class Fragment extends Array<Element | Text> {
             }
         }
     }
-    replaceIn(element: Element | ShadowRoot) {
-        element.replaceChildren(...this)
-    }
-    appendTo(element: Element | ShadowRoot) {
-        for (let child of this) {
-            element.appendChild(child)
-        }
-    }
 }
 
-type ObjectComponent = { new(...args: any[]): HTMLElement | SVGSVGElement }
-type FunctionComponent = { (...args: any[]): HTMLElement | SVGSVGElement }
+interface ParamBase extends Record<string, any> { children?: (HTMLElement | SVGSVGElement)[] }
+type ClassComponent<P extends ParamBase> = { new(props: P): HTMLElement | SVGSVGElement }
+type FunctionComponent<P extends ParamBase> = { (props: P): HTMLElement | SVGSVGElement }
 
 // https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
-export function jsx(nameOrConstructor: string | ObjectComponent | FunctionComponent, props: any, key?: string) {
+export function jsx<P extends ParamBase>(nameOrConstructor: string | ClassComponent<P> | FunctionComponent<P>, props: P, key?: string) {
     if (props !== undefined && props.children !== undefined) {
-        props.children = [props.children]
+        props.children = [props.children as any]
     }
     return jsxs(nameOrConstructor, props)
 }
 
-export function jsxs(
-    nameOrConstructor: string | ObjectComponent | FunctionComponent,
+export function jsxs<P extends ParamBase>(
+    nameOrConstructor: string | ClassComponent<P> | FunctionComponent<P>,
     props: any,
     key?: string
 ) {
-    let namespaceName
     if (typeof nameOrConstructor !== "string") {
         if (nameOrConstructor.prototype !== undefined) {
-            return new (nameOrConstructor as ObjectComponent)(props)
+            return new (nameOrConstructor as ClassComponent<P>)(props)
         } else {
-            return (nameOrConstructor as FunctionComponent)(props)
+            return (nameOrConstructor as FunctionComponent<P>)(props)
         }
     }
 
     const name = nameOrConstructor as string
 
+    let namespaceName
     switch (name) {
         case "svg":
         case "line":
@@ -3012,7 +3005,7 @@ function appendChildren(element: HTMLElement | SVGElement, children: Array<any>)
 // export function createElement(name: string | FunctionConstructor, props: JSX.HTMLElementProps, ...children: any): Element | Fragment {
 // }
 // backward compability
-export function createElement(nameOrConstructor: string | { new(...args: any[]): any }, props: any, ...children: any) {
+export function createElement<P extends ParamBase>(nameOrConstructor: string | ClassComponent<P>, props: P, ...children: any) {
     // console.log(`createElement(${nameOrConstructor}, ${JSON.stringify(props)}, ${children}`)
 
     // props: remove 'key', add 'children'
@@ -3026,12 +3019,22 @@ export function createElement(nameOrConstructor: string | { new(...args: any[]):
             props.children = children
         }
     } else {
-        if (children !== undefined) props = { children }
+        if (children !== undefined) {
+            props = { children } as P
+        }
     }
     return jsxs(nameOrConstructor, props, key)
 }
 
 export type HTMLElementProps = JSX.HTMLElementProps
+
+export function replaceChildren(parent: Element, content: JSX.Element) {
+    if (Array.isArray(content)) {
+        parent.replaceChildren(...content as any[])
+    } else {
+        parent.replaceChildren(content as any)
+    }
+}
 
 //
 // SOLIDJS JSX SUPPORT
@@ -3043,13 +3046,7 @@ export type HTMLElementProps = JSX.HTMLElementProps
  * A general `Component` has no implicit `children` prop.  If desired, you can
  * specify one as in `Component<{name: String, children: JSX.Element}>`.
  */
-
-// export type FunctionComponent<P> = (props: P) => JSX.Element
-// export type ClassComponent = new (props: any) => any
-
-type FC<P> = (props: P) => JSX.Element
-type CC<P> = new (props: P) => JSX.Element
-export type Component<P extends Record<string, any> = {}> = FC<P> | CC<P>
+export type Component<P extends Record<string, any> = {}> = FunctionComponent<P> | ClassComponent<P>
 
 export function template(html: string, isCE?: boolean, isSVG?: boolean, isMathML?: boolean): () => ChildNode {
     return () => {
@@ -3062,16 +3059,13 @@ export function template(html: string, isCE?: boolean, isSVG?: boolean, isMathML
 }
 
 export function createComponent<T extends Record<string, any>>(
-    Comp: Component<T>,
+    functionOrConstructor: Component<T>,
     props: T
 ): JSX.Element {
-    try {
-        return untrack(() => (Comp as FC<T>)(props || ({} as T)))
-    } catch (e) {
-        if (e instanceof TypeError) {
-            return untrack(() => new (Comp as CC<T>)(props))
-        }
-        throw e
+    if (functionOrConstructor.prototype !== undefined) {
+        return new (functionOrConstructor as ClassComponent<T>)(props)
+    } else {
+        return (functionOrConstructor as FunctionComponent<T>)(props)
     }
 }
 

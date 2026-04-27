@@ -47,6 +47,8 @@ export namespace JSX {
 
     interface ToadProps {
         ref?: unknown | ((e: unknown) => void) | undefined
+        children?: Element | undefined
+        classList?: { [k: string]: boolean | undefined } | undefined
         set?: Reference<any> // FIXME: we might be able to specify the exact type here
     }
 
@@ -3041,7 +3043,9 @@ export function replaceChildren(parent: Element, content: JSX.Element) {
 // SOLIDJS JSX SUPPORT
 //
 
-// see dom-expressions/packages/dom-expressions/src/client.js
+// Solid's JSX compiler and runtime are in https://github.com/ryansolid/dom-expressions
+// for now i just copy and pasted code from packages/dom-expressions/src/client.*
+// into this file, which is not the proper way to do it
 
 /**
  * A general `Component` has no implicit `children` prop.  If desired, you can
@@ -3067,6 +3071,25 @@ export function createComponent<T extends Record<string, any>>(
         return new (functionOrConstructor as ClassComponent<T>)(props)
     } else {
         return (functionOrConstructor as FunctionComponent<T>)(props)
+    }
+}
+
+const $$EVENTS = "_$DX_DELEGATE"
+
+export function delegateEvents(eventNames: string[], d?: Document): void {
+    const e = (document as any)[$$EVENTS] || ((document as any)[$$EVENTS] = new Set())
+    for (let i = 0, l = eventNames.length; i < l; i++) {
+        const name = eventNames[i]
+        if (!e.has(name)) {
+            e.add(name)
+            document.addEventListener(name, eventHandler)
+        }
+    }
+}
+export function clearDelegatedEvents(d?: Document): void {
+    if ((document as any)[$$EVENTS]) {
+        for (let name of (document as any)[$$EVENTS].keys()) document.removeEventListener(name, eventHandler)
+        delete (document as any)[$$EVENTS]
     }
 }
 
@@ -3167,7 +3190,6 @@ export function setStyleProperty(node: Element, name: string, value: any) {
         : (node as HTMLElement).style.removeProperty(name)
 }
 
-
 function untrack<T>(fn: () => T) {
     return fn()
 }
@@ -3189,8 +3211,82 @@ export function insert<T>(
     effect(current => insertExpression(parent, (accessor as () => T)(), current, marker), initial)
 }
 
+let effectHandler: ((fn: (prev?: any) => any, init?: any) => void) | undefined
+export function setEffectHandler<T>(fn: (fn: (prev?: T) => T, init?: T) => void) {
+    effectHandler = fn
+}
+
 export function effect<T>(fn: (prev?: T) => T, init?: T): void {
-    fn(init)
+    if (effectHandler) {
+        effectHandler(fn, init)
+    } else {
+        fn(init)
+    }
+}
+
+function eventHandler(e: Event) {
+    //   if (sharedConfig.registry && sharedConfig.events) {
+    //     if (sharedConfig.events.find(([el, ev]) => ev === e)) return;
+    //   }
+
+    let node = e.target as any
+    const key = `$$${e.type}`
+    const oriTarget = e.target
+    const oriCurrentTarget = e.currentTarget
+    const retarget = (value: any) =>
+        Object.defineProperty(e, "target", {
+            configurable: true,
+            value
+        })
+    const handleNode = () => {
+        const handler = node[key]
+        if (handler && !node.disabled) {
+            const data = node[`${key}Data`]
+            data !== undefined ? handler.call(node, data, e) : handler.call(node, e)
+            if (e.cancelBubble) return
+        }
+        node.host &&
+            typeof node.host !== "string" &&
+            !node.host._$host &&
+            node.contains(e.target) &&
+            retarget(node.host)
+        return true
+    }
+    const walkUpTree = () => {
+        while (handleNode() && (node = node._$host || node.parentNode || node.host));
+    }
+
+    // simulate currentTarget
+    Object.defineProperty(e, "currentTarget", {
+        configurable: true,
+        get() {
+            return node || document
+        }
+    })
+    // cancel hydration
+    // if (sharedConfig.registry && !sharedConfig.done) sharedConfig.done = _$HY.done = true
+
+    if (e.composedPath) {
+        const path = e.composedPath()
+        retarget(path[0])
+        for (let i = 0; i < path.length - 2; i++) {
+            node = path[i]
+            if (!handleNode()) break
+            if (node._$host) {
+                node = node._$host
+                // bubble up from portal mount instead of composedPath
+                walkUpTree()
+                break
+            }
+            if (node.parentNode === oriCurrentTarget) {
+                break // don't bubble above root of event delegation
+            }
+        }
+    }
+    // fallback for browsers that don't support composedPath
+    else walkUpTree()
+    // Mixing portals and shadow dom can lead to a nonstandard target, so reset here.
+    retarget(oriTarget)
 }
 
 function insertExpression(parent: MountableElement, value: any, current: any, marker: any, unwrapArray?: any) {

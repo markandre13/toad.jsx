@@ -8,14 +8,17 @@
     "module": "jsx-runtime.js",
     "types": "jsx-runtime.d.ts",
     "exports": {
-        ".": "./jsx-runtime.js",
-        "./jsx-runtime": "./jsx-runtime.js"
+        ".": "./jsx-runtime.js"
     },
     "files": [
+        "README.md",
         "package.json",
         "jsx-runtime.js",
         "jsx-runtime.d.ts",
-        "jsx-runtime.js.map"
+        "jsx-runtime.js.map",
+        "src/**/*.js",
+        "src/**/*.js.map",
+        "src/**/*.d.ts"
     ],
     "repository": {
         "type": "git",

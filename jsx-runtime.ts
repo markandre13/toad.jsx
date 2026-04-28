@@ -1,6 +1,6 @@
 /*
  *  The TOAD JavaScript/TypeScript GUI Library
- *  Copyright (C) 2018-2023 Mark-André Hopf <mhopf@mark13.org>
+ *  Copyright (C) 2018-2026 Mark-André Hopf <mhopf@mark13.org>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as published by
@@ -19,6 +19,7 @@
 import type * as CSS from "csstype"
 import { ClassComponent, FunctionComponent, ParamBase } from "./src/shared"
 export * from "./src/solid-runtime"
+export * from "./src/rxcore"
 
 export namespace JSX {
     // solid/dom-expressions/
@@ -47,7 +48,7 @@ export namespace JSX {
         transform?: string
     }
 
-    interface ToadProps {
+    export interface ToadProps {
         ref?: unknown | ((e: unknown) => void) | undefined
         children?: Element | undefined
         classList?: { [k: string]: boolean | undefined } | undefined

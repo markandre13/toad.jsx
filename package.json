@@ -4,11 +4,12 @@
     "description": "jsx for toad.js",
     "author": "Mark-André Hopf <mhopf@mark13.org>",
     "license": "AGPL-3.0",
-    "main": "jsx-runtime.js",
     "module": "jsx-runtime.js",
     "types": "jsx-runtime.d.ts",
     "exports": {
-        ".": "./jsx-runtime.js"
+        ".": "./jsx-runtime.js",
+        "./jsx-runtime": "./jsx-runtime.js",
+        "./src/**/*": "./src/**/*"
     },
     "files": [
         "README.md",

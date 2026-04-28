@@ -5,7 +5,7 @@
     "traceResolution": false,
     "esModuleInterop": true,
     "declaration": true,
-    "lib": [ "ESNext", "DOM" ],
+    "lib": [ "ESNext", "DOM", "DOM.Iterable" ],
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": false,
     "removeComments": false,

@@ -1,5 +1,5 @@
-import { JSX } from "../jsx-runtime"
-import { ClassComponent, FunctionComponent } from "./shared"
+import { type JSX } from "../jsx-runtime"
+import { type ClassComponent, type FunctionComponent } from "./shared"
 
 export type Component<P extends Record<string, any> = {}> = FunctionComponent<P> | ClassComponent<P>
 

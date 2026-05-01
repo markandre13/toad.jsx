@@ -23,8 +23,8 @@ export {
     SVGNamespace,
     DelegatedEvents
 } from "./constants"
-import { JSX } from "../jsx-runtime.js"
-import { MountableElement } from "./shared.js"
+import { type JSX } from "../jsx-runtime.js"
+import { type MountableElement } from "./shared.js"
 
 const $$EVENTS = "_$DX_DELEGATE"
 

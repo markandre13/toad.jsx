@@ -17,7 +17,7 @@
  */
 
 import type * as CSS from "csstype"
-import { ClassComponent, FunctionComponent, ParamBase } from "./src/shared"
+import { type ClassComponent, type FunctionComponent, type ParamBase } from "./src/shared"
 export * from "./src/solid-runtime"
 export * from "./src/rxcore"
 

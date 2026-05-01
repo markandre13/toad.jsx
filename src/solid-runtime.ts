@@ -108,9 +108,9 @@ export function delegateEvents(eventNames: string[], document = window.document)
     }
 }
 
-export function clearDelegatedEvents(d?: Document): void {
+export function clearDelegatedEvents(document?: Document): void {
     if ((document as any)[$$EVENTS]) {
-        for (let name of (document as any)[$$EVENTS].keys()) document.removeEventListener(name, eventHandler)
+        for (let name of (document as any)[$$EVENTS].keys()) (document as any).removeEventListener(name, eventHandler)
         delete (document as any)[$$EVENTS]
     }
 }

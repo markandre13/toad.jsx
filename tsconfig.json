@@ -1,25 +1,32 @@
 {
-  "compilerOptions": {
-    "target": "es6",
-    "moduleResolution": "node",
-    "traceResolution": false,
-    "esModuleInterop": true,
-    "declaration": true,
-    "lib": [ "ESNext", "DOM", "DOM.Iterable" ],
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": false,
-    "removeComments": false,
-    "experimentalDecorators": true,
-    "noImplicitOverride": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "allowJs": false,
-    "verbatimModuleSyntax": true,
-    "noImplicitAny": true,
-    "sourceMap": true
-  },
-  "include": [
-    "jsx-runtime.ts",
-    "src",
-  ]
+    "compilerOptions": {
+        "target": "es6",
+        "moduleResolution": "node",
+        "traceResolution": false,
+        "esModuleInterop": true,
+        "declaration": true,
+        "lib": [
+            "ESNext",
+            "DOM",
+            "DOM.Iterable"
+        ],
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": false,
+        "removeComments": false,
+        "experimentalDecorators": true,
+        "noImplicitOverride": true,
+        "strict": true,
+        "strictNullChecks": true,
+        "allowJs": false,
+        "verbatimModuleSyntax": true,
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true,
+        "sourceMap": true
+    },
+    "include": [
+        "jsx-runtime.ts",
+        "src",
+    ]
 }

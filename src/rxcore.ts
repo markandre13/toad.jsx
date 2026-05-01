@@ -3,7 +3,7 @@ import { type ClassComponent, type FunctionComponent } from "./shared"
 
 export type Component<P extends Record<string, any> = {}> = FunctionComponent<P> | ClassComponent<P>
 
-export function root(fn: (dispose: () => void) => void, owner?: any) {
+export function root(_fn: (dispose: () => void) => void, _owner?: any) {
     console.error("rxcore.ts: root() not implemented yet")
 }
 
@@ -40,10 +40,9 @@ export function untrack<T>(fn: () => T) {
     return fn()
 }
 
-const currentContext = null;
 export const sharedConfig = {} as any;
 
-export function memo<T>(fn: () => T, equal: boolean): () => T {
+export function memo<T>(fn: () => T, _equal: boolean): () => T {
     console.error("rxcore.ts: memo() not implemented yet")
     return () => fn()
 //   if (typeof fn !== "function") return fn;

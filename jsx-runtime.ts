@@ -2744,7 +2744,7 @@ export namespace JSX {
 
             // stroke properties
             stroke?: string | number
-            strokeWidth?: string // length percentage
+            strokeWidth?: string | number// length percentage
             strokeLinecap?: "butt" | "round" | "square"
             strokeLinejoin?: "miter" | "miter-clip" | "round" | "bevel" | "arcs"
             strokeMiterlimit?: string | number
@@ -2775,6 +2775,7 @@ export namespace JSX {
             rx?: string | number
             ry?: string | number
             stroke?: string
+            strokeWidth?: string | number
             fill?: string
             cursor?: string
             class?: string
@@ -2797,6 +2798,7 @@ export namespace JSX {
             cy: string | number
             r: string | number
             stroke?: string
+            strokeWidth?: string | number
             fill?: string
             cursor?: string
             class?: string
@@ -2811,6 +2813,7 @@ export namespace JSX {
             x: string | number
             y: string | number
             stroke?: string
+            strokeWidth?: string | number
             fill?: string
             cursor?: string
             class?: string
@@ -2824,6 +2827,7 @@ export namespace JSX {
         path: {
             d: string
             stroke?: string
+            strokeWidth?: string | number
             fill?: string
             cursor?: string
             class?: string

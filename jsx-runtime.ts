@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import type * as CSS from "csstype"
+import type * as csstype from "csstype"
 import { type ClassComponent, type FunctionComponent, type ParamBase } from "./src/shared"
 export * from "./src/solid-runtime"
 export * from "./src/rxcore"
@@ -56,7 +56,18 @@ export namespace JSX {
     }
 
     // use csstype's nice CSS definitons and comments for VSCode's Intellisense
-    export interface CSSProperties extends CSS.Properties<string | number> { }
+
+    // the react like variant i used in the past:
+    // export interface CSSProperties extends csstype.Properties<string | number> { }
+
+    // what solid.js uses:
+    // interface CSSProperties extends csstype.PropertiesHyphen {
+    //   //Override
+    //   [key: `-${string}`]: string | number | undefined
+    // }
+
+    // for the time being, we allow both
+    export type CSSProperties = csstype.Properties<string | number> | csstype.PropertiesHyphen
 
     // copy'n pasted Aria definitions from DefinitelyTyped/types/react/index.d.ts
 
@@ -835,7 +846,7 @@ export namespace JSX {
         itemScope?: string
         itemtype?: string
         // nonce
-        style?: CSSProperties
+        style?: string | CSSProperties
         tabIndex?: number
 
         // WAI-ARIA

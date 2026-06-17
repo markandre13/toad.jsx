@@ -2918,6 +2918,8 @@ export function jsx<P extends ParamBase>(nameOrConstructor: string | ClassCompon
     return jsxs(nameOrConstructor, props)
 }
 
+export const jsxDEV = jsx
+
 export function jsxs<P extends ParamBase>(
     nameOrConstructor: string | ClassComponent<P> | FunctionComponent<P>,
     props: P,

@@ -9,6 +9,7 @@
     "exports": {
         ".": "./jsx-runtime.js",
         "./jsx-runtime": "./jsx-runtime.js",
+        "./jsx-dev-runtime": "./jsx-runtime.js",
         "./src/**/*": "./src/**/*"
     },
     "files": [

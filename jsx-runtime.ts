@@ -2999,7 +2999,12 @@ export function setInitialProperties<P extends ParamBase>(element: HTMLElement |
         }
     }
     if (props.children !== undefined) {
-        appendChildren(element, props.children)
+        if (Array.isArray(props.children)) {
+            appendChildren(element, props.children)
+        } else {
+            // special case for solid jsx
+            appendChildren(element, [props.children])
+        }
     }
 }
 

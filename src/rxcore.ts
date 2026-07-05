@@ -22,6 +22,11 @@ export function createComponent<T extends Record<string, any>>(
     }
 }
 
+// TODO:
+// all the reactivity stuff is in toad.js. but to implement this file it is needed.
+// the proper fix would be to either move toad.js' signals into a separate package,
+// e.g. toad.signal or move toad.jsx into toad.js.
+// for now i let toad.js set a callback function in toad.jsx
 let effectHandler: ((fn: (prev?: any) => any, init?: any) => void) | undefined
 export function setEffectHandler<T>(fn: (fn: (prev?: T) => T, init?: T) => void) {
     effectHandler = fn
@@ -35,8 +40,15 @@ export function effect<T>(fn: (prev?: T) => T, init?: T): void {
     }
 }
 
+/**
+ * executes a function without collecting dependencies from the current reactive scope.
+ * @param fn Function executed outside the current tracking context.
+ * @returns the value produced by fn unchanged.
+ */
 export function untrack<T>(fn: () => T) {
     console.error("rxcore.ts: untrack() not implemented yet")
+    // if we are inside an evaluate, we need to disable it, eg. with something like this
+    //   evaluateAndDiscoverDependencies(undefined, fn)
     return fn()
 }
 

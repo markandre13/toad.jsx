@@ -43,6 +43,15 @@ export {
     voidFn as getRequestEvent
 }
 
+/**
+ * Mounts a reactive component into a DOM element.
+ * 
+ * @param code creates the element to render
+ * @param element element on which to add the new element
+ * @param init 
+ * @param {{ owner?: unknown }} [options]
+ * @returns {() => void} dispose function
+ */
 export function render(
     code: () => JSX.Element,
     element: MountableElement,
@@ -67,6 +76,9 @@ export function render(
     }
 }
 
+/**
+ * Creates a reusable template cloning function from an HTML string.
+ */
 export function template(html: string, _isCE?: boolean, isSVG?: boolean, isMathML?: boolean): () => ChildNode {
     return () => {
         const t = isMathML
@@ -97,6 +109,9 @@ export function template(html: string, _isCE?: boolean, isSVG?: boolean, isMathM
     // return fn
 }
 
+/**
+ * Sets up delegated event listeners on the document.
+ */
 export function delegateEvents(eventNames: string[], document = window.document) {
     const e = (document as any)[$$EVENTS] || ((document as any)[$$EVENTS] = new Set())
     for (let i = 0, l = eventNames.length; i < l; i++) {
@@ -108,6 +123,9 @@ export function delegateEvents(eventNames: string[], document = window.document)
     }
 }
 
+/**
+ * Removes all delegated event listeners from the document.
+ */
 export function clearDelegatedEvents(document?: Document): void {
     if ((document as any)[$$EVENTS]) {
         for (let name of (document as any)[$$EVENTS].keys()) (document as any).removeEventListener(name, eventHandler)
@@ -115,30 +133,48 @@ export function clearDelegatedEvents(document?: Document): void {
     }
 }
 
+/**
+ * Sets a DOM property on an element.
+ */
 export function setProperty(node: Element, name: string, value: string) {
     if (isHydrating(node)) return
     (node as any)[name] = value
 }
 
-export function setAttribute(node: Element, name: string, value: string): void {
+/**
+ * Sets or removes a DOM attribute.
+ */
+export function setAttribute(node: Element, name: string, value: string | null): void {
     if (value == null) node.removeAttribute(name)
     else node.setAttribute(name, value)
 }
 
-export function setAttributeNS(node: Element, namespace: string, name: string, value: string): void {
+/**
+ * Sets or removes a namespaced DOM attribute (e.g. SVG, MathML).
+ */
+export function setAttributeNS(node: Element, namespace: string, name: string, value: string | null): void {
     if (value == null) node.removeAttributeNS(namespace, name)
     else node.setAttributeNS(namespace, name, value)
 }
 
+/**
+ * Sets or removes a boolean DOM attribute.
+ */
 export function setBoolAttribute(node: Element, name: string, value: any): void {
     value ? node.setAttribute(name, "") : node.removeAttribute(name)
 }
 
-export function className(node: Element, value: string): void {
+/**
+ * Sets or removes the className of an element.
+ */
+export function className(node: Element, value: string | null): void {
     if (value == null) node.removeAttribute("class")
     else node.className = value
 }
 
+/**
+ * Adds an event listener, supporting data-bound handlers and delegation.
+ */
 export function addEventListener(
     node: Element,
     name: string,
@@ -156,6 +192,9 @@ export function addEventListener(
     } else (node as any).addEventListener(name, handler, typeof handler !== "function" && handler)
 }
 
+/**
+ * Toggles CSS classes based on a boolean map, diffing against previous state.
+ */
 export function classList(
     node: Element,
     value: { [k: string]: boolean },
@@ -180,6 +219,9 @@ export function classList(
     return prev!
 }
 
+/**
+ * Sets inline styles, accepting a string or object with diffing against previous value.
+ */
 export function style(node: Element,
     value: { [k: string]: string },
     prev?: { [k: string]: string }
@@ -205,12 +247,19 @@ export function style(node: Element,
     return prev
 }
 
-export function setStyleProperty(node: Element, name: string, value: any) {
+/**
+ * Sets or removes a single CSS custom property on an element.
+ */
+export function setStyleProperty(node: Element, name: string, value: string | null) {
     value != null
         ? (node as HTMLElement).style.setProperty(name, value)
         : (node as HTMLElement).style.removeProperty(name)
 }
 
+/**
+ * Spreads props onto a DOM node, including children and refs while maintaining
+ * solid's reactivity.
+ */
 export function spread<T extends JSX.ToadProps>(
     node: Element,
     props: T,
@@ -226,6 +275,9 @@ export function spread<T extends JSX.ToadProps>(
     return prevProps
 }
 
+/**
+ * Converts a signal property on an object into a dynamic getter.
+ */
 export function dynamicProperty(props: unknown, key: string): unknown {
     const src = (props as any)[key]
     Object.defineProperty(props, key, {
@@ -237,10 +289,16 @@ export function dynamicProperty(props: unknown, key: string): unknown {
     return props
 }
 
+/**
+ * Runs a ref function outside of reactive tracking scope.
+ */
 export function use<Arg, Ret>(fn: (node: Element, arg: Arg) => Ret, element: Element, arg?: Arg): Ret {
     return untrack(() => fn(element, arg!))
 }
 
+/**
+ * Inserts a reactive value or signal into a parent node.
+ */
 export function insert<T>(
     parent: MountableElement,
     accessor: (() => T) | T,
@@ -252,6 +310,9 @@ export function insert<T>(
     effect(current => insertExpression(parent, (accessor as () => T)(), current, marker), initial)
 }
 
+/**
+ * Assigns props to a DOM node, handling attributes, properties, events, and styles.
+ */
 export function assign(node: Element,
     props: any,
     isSVG?: Boolean,
@@ -273,7 +334,9 @@ export function assign(node: Element,
     }
 }
 
-// Hydrate
+/**
+ * Hydrates server-rendered HTML, attaching reactive behavior to existing DOM.
+ */
 export function hydrate(
   code: () => JSX.Element,
   element: Element,
@@ -299,6 +362,9 @@ export function hydrate(
     }
 }
 
+/**
+ * Gets the next element from the hydration registry or creates a new one.
+ */
 export function getNextElement(template: () => Element): Element {
     let node,
         key,
@@ -317,12 +383,18 @@ export function getNextElement(template: () => Element): Element {
     return node
 }
 
+/**
+ * Skips sibling nodes until one matching the given tag name is found.
+ */
 export function getNextMatch(start: Node, nodeName: string): Element | null {
     let el = start as (Element | null)
     while (el && el.localName !== nodeName) el = el.nextSibling as Element
     return el
 }
 
+/**
+ * Finds the end marker node and collected nodes for a hydration boundary.
+ */
 export function getNextMarker(start: Node): [Node, Array<Node>] {
     let end: Node | null = start,
         count = 0,
@@ -344,6 +416,9 @@ export function getNextMarker(start: Node): [Node, Array<Node>] {
     return [end!, current]
 }
 
+/**
+ * Flushes queued hydration events in a microtask.
+ */
 export function runHydrationEvents() {
     if (sharedConfig.events && !sharedConfig.events.queued) {
         const gT = (globalThis as any)
@@ -380,8 +455,6 @@ function toggleClassKey(node: Element, key: string, value: boolean) {
     for (let i = 0, nameLen = classNames.length; i < nameLen; i++)
         node.classList.toggle(classNames[i], value)
 }
-
-// // Element string any any Boolean
 
 function assignProp(node: Element, prop: string, value: any, prev: any, isSVG?: Boolean, skipRef?: Boolean, props?: any) {
     let isCE, isProp, isChildProp, propAlias, forceProp
@@ -631,14 +704,23 @@ function gatherHydratable(element: Element, root?: string) {
     }
 }
 
+/**
+ * Returns the next hydration context ID.
+ */
 export function getHydrationKey(): string {
     return sharedConfig.getNextContextId()
 }
 
+/**
+ * Component that suppresses hydration for its children.
+ */
 export function NoHydration(props: { children?: JSX.Element }): JSX.Element {
     return sharedConfig.context ? undefined : props.children
 }
 
+/**
+ * Component that marks its children as hydratable.
+ */
 export function Hydration(props: { children?: JSX.Element }): JSX.Element {
     return props.children
 }
@@ -648,7 +730,9 @@ const voidFn = () => undefined
 // experimental
 export const RequestContext = Symbol()
 
-// deprecated
+/**
+ * @deprecated
+ */
 export function innerHTML(parent: Element, content: string) {
     !sharedConfig.context && (parent.innerHTML = content)
 }

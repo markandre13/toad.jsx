@@ -2852,6 +2852,15 @@ export namespace JSX {
             width?: string | number
             height?: string | number
         }
+
+        g: {
+            transform?: string
+            stroke?: string
+            strokeWidth?: string | number
+            fill?: string
+            cursor?: string
+            class?: string
+        }
     }
 }
 
@@ -2944,6 +2953,7 @@ export function jsxs<P extends ParamBase>(
         case "path":
         case "text":
         case "use":
+        case "g":
             namespaceName = "http://www.w3.org/2000/svg"
             break
         default:
@@ -2990,8 +3000,7 @@ export function setInitialProperties<P extends ParamBase>(element: HTMLElement |
                 } else {
                     if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") {
                         if (namespaceName === "http://www.w3.org/2000/svg") {
-                            const regex = /[A-Z]/g
-                            key = key.replace(regex, (upperCase) => "-" + upperCase.toLowerCase())
+                            key = key.replace(/[A-Z]/g, (upperCase) => "-" + upperCase.toLowerCase())
                         }
                         element.setAttributeNS(null, key, `${value}`)
                     }

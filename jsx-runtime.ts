@@ -3049,7 +3049,11 @@ export type HTMLElementProps = JSX.HTMLElementProps
 
 export function replaceChildren(parent: Element, content: JSX.Element) {
     if (Array.isArray(content)) {
-        parent.replaceChildren(...content as any[])
+        if (content.length === 1 && Array.isArray(content[0])) {
+            parent.replaceChildren(...content[0] as any[])
+        } else {
+            parent.replaceChildren(...content as any[])
+        }
     } else {
         parent.replaceChildren(content as any)
     }

@@ -2899,6 +2899,24 @@ export class Reference<T> {
     }
 }
 
+export interface Ref<T> {
+    current: T
+}
+
+/**
+ * return an object to write a reference to
+ * 
+  * @example
+ * ```typescript
+ * let div = makeRef()
+ * let dom = <div ref={div} />
+ * assert(dom === div.current)
+ * ```
+ */
+export function makeRef<T = HTMLElement>(): Ref<T> {
+    return {current: null as any}
+}
+
 export function ref<T extends Object>(object: T, attribute: keyof T): Reference<T> {
     return new Reference<T>(object, attribute)
 }
@@ -2990,6 +3008,9 @@ export function setInitialProperties<P extends ParamBase>(element: HTMLElement |
                 }
                 break
             case "ref":
+                if ("current" in value ) {
+                    value.current = element
+                }
                 break
             case "set":
                 Object.defineProperty(props.set!.object, props.set!.attribute, { value: element, writable: true })

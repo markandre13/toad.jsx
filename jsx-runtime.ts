@@ -26,6 +26,10 @@ export namespace JSX {
     export interface ArrayElement extends Array<Element> { }
     export type Element = Node | ArrayElement | (string & {}) | number | boolean | null | undefined
 
+   export interface Ref<T = HTMLElement | SVGElement> {
+       current: T
+   }
+
     type SVGPreserveAspectRatioAlign =
         | "none"
         | "xMinYMin"
@@ -49,7 +53,7 @@ export namespace JSX {
     }
 
     export interface ToadProps {
-        ref?: unknown | ((e: unknown) => void) | undefined
+        ref?: Ref
         children?: Element | undefined
         classList?: { [k: string]: boolean | undefined } | undefined
         set?: Reference<any> // FIXME: we might be able to specify the exact type here
@@ -2899,10 +2903,6 @@ export class Reference<T> {
     }
 }
 
-export interface Ref<T> {
-    current: T
-}
-
 /**
  * return an object to write a reference to
  * 
@@ -2913,8 +2913,8 @@ export interface Ref<T> {
  * assert(dom === div.current)
  * ```
  */
-export function makeRef<T = HTMLElement>(): Ref<T> {
-    return {current: null as any}
+export function makeRef<T = HTMLElement | SVGElement>(): JSX.Ref<T> {
+    return { current: null as any }
 }
 
 export function ref<T extends Object>(object: T, attribute: keyof T): Reference<T> {
@@ -3008,7 +3008,7 @@ export function setInitialProperties<P extends ParamBase>(element: HTMLElement |
                 }
                 break
             case "ref":
-                if ("current" in value ) {
+                if (value !== undefined && "current" in value) {
                     value.current = element
                 }
                 break
@@ -3082,7 +3082,10 @@ export function createElement<P extends ParamBase>(nameOrConstructor: string | C
 
 export type HTMLElementProps = JSX.HTMLElementProps
 
-export function replaceChildren(parent: Element, content: JSX.Element) {
+export function replaceChildren(parent: Element | JSX.Ref<Element>, content: JSX.Element) {
+    if (!(parent instanceof Element)) {
+        parent = parent.current
+    }
     if (Array.isArray(content)) {
         if (content.length === 1 && Array.isArray(content[0])) {
             parent.replaceChildren(...content[0] as any[])

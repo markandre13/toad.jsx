@@ -18,6 +18,7 @@
 
 import type * as csstype from "csstype"
 import { type ClassComponent, type FunctionComponent, type ParamBase } from "./src/shared"
+import { effect } from "./jsx-runtime"
 export * from "./src/solid-runtime"
 export * from "./src/rxcore"
 
@@ -55,7 +56,7 @@ export namespace JSX {
     export interface ToadProps {
         ref?: Ref
         children?: Element | undefined
-        classList?: { [k: string]: boolean | undefined } | undefined
+        classList?: { [k: string]: boolean | (() => boolean) | undefined } | undefined
         set?: Reference<any> // FIXME: we might be able to specify the exact type here
     }
 
@@ -822,7 +823,7 @@ export namespace JSX {
     export interface HTMLElementProps extends ElementProps, GlobalEventHandlerProps, AriaAttributes {
         children?: any
         // metadata attributes
-        title?: string
+        title?: string | (() => string)
         lang?: string
         translate?: boolean
         dir?: string
@@ -2825,6 +2826,7 @@ export namespace JSX {
          * @see {@link }
          */
         text: {
+            children?: any
             x: string | number
             y: string | number
             stroke?: string
@@ -2858,6 +2860,7 @@ export namespace JSX {
         }
 
         g: {
+            children?: any
             transform?: string
             stroke?: string
             strokeWidth?: string | number
@@ -2985,18 +2988,43 @@ export function jsxs<P extends ParamBase>(
 export function setInitialProperties<P extends ParamBase>(element: HTMLElement | SVGElement, props?: P, namespaceName?: string) {
     if (props === null || props === undefined) return
     for (let [key, value] of Object.entries(props)) {
-        switch (key) {
+        switch (key.toLowerCase()) {
             case "children":
                 break
+            // TODO: deprecated?
             case "action":
                 ; (element as any).setAction(value)
                 break
+            // TODO: deprecated?
             case "model":
                 ; (element as any).setModel(value)
                 break
             case "class":
                 element.classList.add(value as string) // FIXME: value is whitespace separated list
                 break
+            case "classlist": {
+                for (let [name, flag] of Object.entries(value as string)) {
+                    if (typeof flag === "boolean") {
+                        if (flag) {
+                            element.classList.add(name)
+                        } else {
+                            element.classList.remove(name)
+                        }
+                        continue
+                    }
+                    if (typeof flag === "function") {
+                        effect(() => {
+                            if ((flag as Function)()) {
+                                element.classList.add(name)
+                            } else {
+                                element.classList.remove(name)
+                            }
+                        })
+                        continue
+                    }
+                    console.log(`classList flag of tpye ${typeof flag} not implemented`)
+                }
+            } break
             case "style":
                 for (let [skey, svalue] of Object.entries(value as string)) {
                     const regex = /[A-Z]/g
@@ -3019,6 +3047,19 @@ export function setInitialProperties<P extends ParamBase>(element: HTMLElement |
                 if (key.substring(0, 2) === "on") {
                     element.addEventListener(key.substring(2), value as () => void)
                 } else {
+                    if (typeof value === "function") {
+                        let memo: any
+                        effect(() => {
+                            const v = value()
+                            if (v !== memo) {
+                                memo = v
+                                if (namespaceName === "http://www.w3.org/2000/svg") {
+                                    key = key.replace(/[A-Z]/g, (upperCase) => "-" + upperCase.toLowerCase())
+                                }
+                                element.setAttributeNS(null, key, `${v}`)
+                            }
+                        })
+                    }
                     if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") {
                         if (namespaceName === "http://www.w3.org/2000/svg") {
                             key = key.replace(/[A-Z]/g, (upperCase) => "-" + upperCase.toLowerCase())
@@ -3029,11 +3070,24 @@ export function setInitialProperties<P extends ParamBase>(element: HTMLElement |
         }
     }
     if (props.children !== undefined) {
-        if (Array.isArray(props.children)) {
-            appendChildren(element, props.children)
+        if (props.children.length === 1 && typeof props.children[0] === "function") {
+            const fn = props.children[0] as Function
+            let memo: any
+            effect(() => {
+                let value = fn()
+                if (value !== memo) {
+                    memo = value
+                    if (typeof value === "number" || typeof value === "bigint" || typeof value === "boolean") {
+                        value = value.toString()
+                    }
+                    if (typeof value === "string") {
+                        value = document.createTextNode(value)
+                    }
+                    replaceChildren(element, fn())
+                }
+            })
         } else {
-            // special case for solid jsx
-            appendChildren(element, [props.children])
+            appendChildren(element, props.children)
         }
     }
 }
